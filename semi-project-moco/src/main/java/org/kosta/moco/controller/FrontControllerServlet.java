@@ -27,6 +27,8 @@ public class FrontControllerServlet extends HttpServlet {
 		this.permitAllList = new ArrayList<String>();
 		permitAllList.add("ListController");
 		permitAllList.add("LoginController");
+		permitAllList.add("MainpageController");
+		
 	}
 	
 	/**
@@ -51,7 +53,7 @@ public class FrontControllerServlet extends HttpServlet {
 			
 			// 인증 공통 정책
 			if(checkLogin(request, command)) {
-				response.sendRedirect("ListController.do");
+				response.sendRedirect("MainpageController.do");
 				return;
 			}
 			
