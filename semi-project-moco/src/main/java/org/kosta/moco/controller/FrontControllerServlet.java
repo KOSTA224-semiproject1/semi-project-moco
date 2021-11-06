@@ -26,7 +26,10 @@ public class FrontControllerServlet extends HttpServlet {
 	public void init() throws ServletException {
 		this.permitAllList = new ArrayList<String>();
 		permitAllList.add("ListController");
+		permitAllList.add("MainPageController");
 		permitAllList.add("LoginController");
+		permitAllList.add("RegisterController");
+		permitAllList.add("EmailCheckController");
 	}
 	
 	/**
