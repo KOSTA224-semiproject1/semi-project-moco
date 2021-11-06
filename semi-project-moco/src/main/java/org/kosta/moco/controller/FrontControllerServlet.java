@@ -54,7 +54,7 @@ public class FrontControllerServlet extends HttpServlet {
 			
 			// 인증 공통 정책
 			if(checkLogin(request, command)) {
-				response.sendRedirect("ListController.do");
+				response.sendRedirect("MainPageController.do");
 				return;
 			}
 			
