@@ -45,7 +45,7 @@
 	}
 </script>
 <div class="container">
-	<div class="row">
+	<div class="row" style="margin-top: 50px;">
 		<div class="col-sm-4 offset-sm-4">
 			<form action="RegisterController.do" method="post" onsubmit="return checkRegForm()">
 				<div class="input-group mb-3">
