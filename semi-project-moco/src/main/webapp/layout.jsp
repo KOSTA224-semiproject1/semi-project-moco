@@ -39,7 +39,7 @@
       }
       
       const register = () => {
-         location.href = "RegisterController.do";
+         location.href = "RegisterPageController.do";
       }
    </script>
 </body>
