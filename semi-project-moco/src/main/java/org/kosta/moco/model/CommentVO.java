@@ -4,19 +4,19 @@ public class CommentVO {
 	private int comment_no;
 	private String comment_content;
 	private String comment_regdate;
-	private String email;
-	private int post_no;
+	private MemberVO mvo;
+	private PostVO pvo;
 	public CommentVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CommentVO(int comment_no, String comment_content, String comment_regdate, String email, int post_no) {
+	public CommentVO(int comment_no, String comment_content, String comment_regdate, MemberVO mvo, PostVO pvo) {
 		super();
 		this.comment_no = comment_no;
 		this.comment_content = comment_content;
 		this.comment_regdate = comment_regdate;
-		this.email = email;
-		this.post_no = post_no;
+		this.mvo = mvo;
+		this.pvo = pvo;
 	}
 	public int getComment_no() {
 		return comment_no;
@@ -36,22 +36,22 @@ public class CommentVO {
 	public void setComment_regdate(String comment_regdate) {
 		this.comment_regdate = comment_regdate;
 	}
-	public String getEmail() {
-		return email;
+	public MemberVO getMvo() {
+		return mvo;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMvo(MemberVO mvo) {
+		this.mvo = mvo;
 	}
-	public int getPost_no() {
-		return post_no;
+	public PostVO getPvo() {
+		return pvo;
 	}
-	public void setPost_no(int post_no) {
-		this.post_no = post_no;
+	public void setPvo(PostVO pvo) {
+		this.pvo = pvo;
 	}
 	@Override
 	public String toString() {
 		return "CommentVO [comment_no=" + comment_no + ", comment_content=" + comment_content + ", comment_regdate="
-				+ comment_regdate + ", email=" + email + ", post_no=" + post_no + "]";
+				+ comment_regdate + ", mvo=" + mvo + ", pvo=" + pvo + "]";
 	}
 }
 /*
