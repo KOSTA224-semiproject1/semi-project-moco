@@ -7,13 +7,13 @@ public class PostVO {
 	private String post_code;
 	private String post_regdate;
 	private int hits;
-	private String email;
-	private int language_code;
+	private MemberVO mvo;
+	private LanguageVO lvo;
 	public PostVO() {
 		super();
 	}
 	public PostVO(int post_no, String post_title, String post_content, String post_code, String post_regdate, int hits,
-			String email, int language_code) {
+			MemberVO mvo, LanguageVO lvo) {
 		super();
 		this.post_no = post_no;
 		this.post_title = post_title;
@@ -21,8 +21,8 @@ public class PostVO {
 		this.post_code = post_code;
 		this.post_regdate = post_regdate;
 		this.hits = hits;
-		this.email = email;
-		this.language_code = language_code;
+		this.mvo = mvo;
+		this.lvo = lvo;
 	}
 	public int getPost_no() {
 		return post_no;
@@ -60,22 +60,22 @@ public class PostVO {
 	public void setHits(int hits) {
 		this.hits = hits;
 	}
-	public String getEmail() {
-		return email;
+	public MemberVO getMvo() {
+		return mvo;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMvo(MemberVO mvo) {
+		this.mvo = mvo;
 	}
-	public int getLanguage_code() {
-		return language_code;
+	public LanguageVO getLvo() {
+		return lvo;
 	}
-	public void setLanguage_code(int language_code) {
-		this.language_code = language_code;
+	public void setLvo(LanguageVO lvo) {
+		this.lvo = lvo;
 	}
 	@Override
 	public String toString() {
 		return "PostVO [post_no=" + post_no + ", post_title=" + post_title + ", post_content=" + post_content
-				+ ", post_code=" + post_code + ", post_regdate=" + post_regdate + ", hits=" + hits + ", email=" + email
-				+ ", language_code=" + language_code + "]";
+				+ ", post_code=" + post_code + ", post_regdate=" + post_regdate + ", hits=" + hits + ", mvo=" + mvo
+				+ ", lvo=" + lvo + "]";
 	}
 }
