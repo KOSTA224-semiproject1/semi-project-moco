@@ -88,4 +88,25 @@ public class MemberDAO {
 		}
 		return result;
 	}
+	
+	public MemberVO login(String email,String password) throws SQLException {
+		MemberVO memberVO=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="select nickname from moco_member where email=? and password=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, password);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				memberVO=new MemberVO(email,password,rs.getString(1));
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return memberVO;
+	}
 }

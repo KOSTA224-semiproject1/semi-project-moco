@@ -30,6 +30,12 @@ public class MemberVO implements Serializable {
 		this.thumbs = thumbs;
 		this.github = github;
 	}
+	public MemberVO(String id, String password, String name) {
+		super();
+		this.email = id;
+		this.password = password;
+		this.nickname = name;
+	}
 
 	public String getEmail() {
 		return email;

@@ -16,7 +16,7 @@
       <div class="col mb-4">
            <div class="card text-center">
               <div class="lang-img-box">
-                 <img src="images/python.png" class="card-img-top lang-img" alt="...">
+                 <img src="images/c.png" class="card-img-top lang-img" alt="...">
               </div>
              <div class="card-body">
                   <h5 class="card-title">C 질문 게시판</h5>
@@ -26,7 +26,7 @@
       <div class="col mb-4">
            <div class="card text-center">
               <div class="lang-img-box">
-                 <img src="images/c.png" class="card-img-top lang-img" alt="...">
+                 <img src="images/python.png" class="card-img-top lang-img" alt="...">
               </div>
              <div class="card-body">
                   <h5 class="card-title">Python 질문 게시판</h5>
