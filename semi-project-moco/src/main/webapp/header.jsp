@@ -14,21 +14,26 @@
 				</form>
 				</c:when>
 				<c:otherwise>
-	<a href="MainPageController.do">홈</a>&nbsp;&nbsp; 	
  	${sessionScope.mvo.nickname}님&nbsp;&nbsp; , 안녕하세요.&nbsp;&nbsp;&nbsp;
  	<script>
-			function logout() {
+			<%--function logout() {
 				let result = confirm("로그아웃하시겠습니까?");
 				if (result) {
 					document.getElementById("logoutForm").submit();
 				}
-			}
+			}--%>
 		</script>
-					<a href="javascript:logout()">로그아웃</a>&nbsp;&nbsp;
- 	<form action="LogoutController.do" method="post" id="logoutForm"></form>
+					<%-- <a href="javascript:logout()">로그아웃</a--%>&nbsp;&nbsp;
+ 	<form action="LogoutController.do" method="post" id="logoutForm">
+ 	<button class="btn btn-primary me-md-2" type="submit">로그아웃</button>
+ 	</form>
+ 	<form action="MyPageController.do" id="MyPage">
+ 		<button class="btn btn-primary me-md-2" type="submit">마이페이지</button>
+ 		
+ 	</form>
 				</c:otherwise>
 			</c:choose>
-
+			
 
 
 
