@@ -12,54 +12,60 @@
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
 <style type="text/css">
-
-
 .user_nickname {
 	position: absolute;
-	width: 410px;
-	height: 109px;
-	left: 164px;
-	top: 524px;
+	width: 382px;
+	height: 78px;
+	left: 205px;
+	top: 467px;
 }
 
 .user_img {
 	position: absolute;
-	width: 410px;
-	height: 361px;
-	left: 164px;
-	top: 138px;
+	width: 382px;
+	height: 326px;
+	left: 205px;
+	top: 126px;
 }
 
 .user_posts {
 	position: absolute;
-	width: 1138px;
-	height: 306px;
-	left: 164px;
-	top: 658px;
+	width: 1095px;
+	height: 293px;
+	left: 205px;
+	top: 563px;
+}
+
+.edit_profile {
+	position: absolute;
+	width: 1095px;
+	height: 89px;
+	left: 205px;
+	top: 875px;
 }
 
 .user_github {
 	position: absolute;
 	width: 692px;
-	height: 108px;
-	left: 610px;
-	top: 138px;
+	height: 91px;
+	left: 608px;
+	top: 126px;
 }
 
 .user_email {
 	position: absolute;
 	width: 692px;
-	height: 108px;
-	left: 610px;
-	top: 265px;
+	height: 91px;
+	left: 608px;
+	top: 233px;
 }
 
 .user_rank {
 	position: absolute;
 	width: 692px;
-	height: 238px;
-	left: 610px;
-	top: 395px;
+	height: 201px;
+	left: 608px;
+	top: 343px;
 }
 
 .logo {
