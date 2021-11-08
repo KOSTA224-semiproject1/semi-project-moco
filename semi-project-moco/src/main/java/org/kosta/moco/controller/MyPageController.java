@@ -5,10 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MyPageController implements Controller {
 
-	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+   @Override
+   public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+      request.setAttribute("url", "mypage.jsp");
+      return "layout.jsp";
+   }
 
 }
