@@ -13,7 +13,15 @@ public class MemberVO implements Serializable {
 	public MemberVO() {
 		super();
 	}
-
+	
+	
+	public MemberVO(String email, String nickname, String github) {
+		super();
+		this.email = email;
+		this.nickname = nickname;
+		this.github = github;
+	}
+	
 	public MemberVO(String email, String password, String nickname, String github) {
 		super();
 		this.email = email;
@@ -29,12 +37,6 @@ public class MemberVO implements Serializable {
 		this.nickname = nickname;
 		this.thumbs = thumbs;
 		this.github = github;
-	}
-	public MemberVO(String id, String password, String name) {
-		super();
-		this.email = id;
-		this.password = password;
-		this.nickname = name;
 	}
 
 	public String getEmail() {
