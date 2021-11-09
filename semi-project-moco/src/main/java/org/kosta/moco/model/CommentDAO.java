@@ -42,7 +42,7 @@ public class CommentDAO {
 	 * @return ArrayList<CommentVO> : list
 	 * @throws SQLException 
 	 */
-	public ArrayList<CommentVO> getCommentListByNo(int no) throws SQLException {
+	public ArrayList<CommentVO> getCommentListByNo(String no) throws SQLException {
 		ArrayList<CommentVO> list = new ArrayList<>();
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -60,7 +60,7 @@ public class CommentDAO {
 			sql.append("from moco_comment c, moco_member m where c.email=m.email and post_no=? ");
 			sql.append("order by comment_no asc");
 			pstmt=con.prepareStatement(sql.toString());
-			pstmt.setInt(1, no);
+			pstmt.setString(1, no);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				MemberVO mvo = new MemberVO();
@@ -92,6 +92,27 @@ public class CommentDAO {
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
 		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	/**
+	 * no (게시물 번호)에 해당하는 글에 댓글을 추가한다.
+	 * 
+	 * @param no 
+	 * @throws SQLException 
+	 */
+	public void writeCommentByNo(String content, String email, String pno) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con=dataSource.getConnection();
+			String sql = "insert into moco_comment values(moco_comment_seq.nextval, ?, sysdate, ? , ?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, content);		
+			pstmt.setString(2, email);		
+			pstmt.setString(3, pno);		
+			pstmt.executeUpdate();
+		} finally {
 			closeAll(pstmt, con);
 		}
 	}
