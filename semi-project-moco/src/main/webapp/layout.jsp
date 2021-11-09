@@ -12,62 +12,140 @@
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
 <style type="text/css">
-.user_nickname {
+/*마이페이지와 마이페이지 수정 둘다 쓰이는 css*/
+
+/*마이페이지*/
+.user_email {
 	position: absolute;
-	width: 382px;
-	height: 78px;
-	left: 205px;
-	top: 467px;
+	width: 758px;
+	height: 145px;
+	left: 816px;
+	top: 126px;
+	background: #C4C4C4;
 }
 
-.user_img {
+.email {
+	position: relative;
+	top: 30px;
+	text-align: center;
+}
+
+.user_nickname {
 	position: absolute;
-	width: 382px;
-	height: 326px;
-	left: 205px;
+	width: 758px;
+	height: 145px;
+	left: 816px;
+	top: 284px;
+	background: #C4C4C4;
+}
+
+.nickname {
+	position: relative;
+	top: 30px;
+	text-align: center;
+}
+
+.user_github {
+	position: absolute;
+	width: 758px;
+	height: 145px;
+	left: 816px;
+	top: 441px;
+	background: #C4C4C4;
+}
+
+.github {
+	position: relative;
+	top: 30px;
+	text-align: center;
+}
+
+.user_rank {
+	position: absolute;
+	text-align: center;
+	width: 418px;
+	height: 86px;
+	left: 375px;
+	top: 500px;
+	width: 418px;
+}
+
+.grade {
+	position: relative;
+	top: 30px;
+	text-align: center;
+}
+
+.user_rank_img {
+	position: absolute;
+	width: 418px;
+	height: 358px;
+	left: 375px;
 	top: 126px;
+	background: #C4C4C4;
+}
+
+.center_img {
+	position: relative;
+	top: 70px;
+	text-align: center;
 }
 
 .user_posts {
 	position: absolute;
-	width: 1095px;
-	height: 293px;
-	left: 205px;
-	top: 563px;
+	width: 1199px;
+	height: 321px;
+	left: 375px;
+	top: 606px;
+	background: #C4C4C4;
 }
 
 .edit_profile {
 	position: absolute;
-	width: 1095px;
-	height: 89px;
-	left: 205px;
-	top: 875px;
+	width: 1199px;
+	height: 98px;
+	left: 375px;
+	top: 948px;
 }
 
-.user_github {
+/* 마이페이지 수정 */
+.e_user_email {
 	position: absolute;
 	width: 692px;
 	height: 91px;
 	left: 608px;
 	top: 126px;
+	background: #C4C4C4;
 }
 
-.user_email {
+.e_user_nickname {
 	position: absolute;
 	width: 692px;
 	height: 91px;
 	left: 608px;
 	top: 233px;
+	background: #C4C4C4;
 }
 
-.user_rank {
+.e_user_github {
 	position: absolute;
 	width: 692px;
-	height: 201px;
+	height: 91px;
 	left: 608px;
-	top: 343px;
+	top: 340px;
+	background: #C4C4C4;
 }
 
+.e_user_password {
+	position: absolute;
+	width: 692px;
+	height: 91px;
+	left: 608px;
+	top: 453px;
+	background: #C4C4C4;
+}
+
+/* 로고 */
 .logo {
 	width: 75px;
 }
@@ -80,6 +158,7 @@
 	margin: 20px 0;
 }
 
+/* 메인페이지 카테고리 */
 .card {
 	box-shadow: none;
 	transform: scale(1);
