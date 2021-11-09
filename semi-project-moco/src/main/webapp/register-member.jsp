@@ -4,7 +4,7 @@
 	function checkRegForm() {
 		if (document.getElementById("pass").value != document
 				.getElementById("confirmPass").value) {
-			alert("패스워드와 패스워드 확인이 일치하지 않습니다");
+			alert("비밀번호가 일치하지 않습니다");
 			return false;
 		}
 		if (document.getElementById("flag").value != document
@@ -16,7 +16,7 @@
 	function checkEmail() {
 		let mid = document.getElementById("email");
 		if (mid.value == "") {
-			alert("이메일을 입력하세요");
+			alert("아이디(이메일)을 입력하세요");
 		} else {
 			window.open("EmailCheckController.do?email=" + mid.value, "mypopup",
 					"width=350,height=150,top=150,left=400");
@@ -32,15 +32,15 @@
 		var enoughRegex = new RegExp("(?=.{8,}).*", "g");
 		var pwd = document.getElementById("pass");
 		if (pwd.value.length == 0) {
-			strength.innerHTML = '패스워드 강도';
+			strength.innerHTML = '비밀번호 강도';
 		} else if (false == enoughRegex.test(pwd.value)) {
-			strength.innerHTML = 'More Characters';
+			strength.innerHTML = '사용불가';
 		} else if (strongRegex.test(pwd.value)) {
-			strength.innerHTML = '<span style="color:green">Strong!</span>';
+			strength.innerHTML = '<span style="color:green">안전</span>';
 		} else if (mediumRegex.test(pwd.value)) {
-			strength.innerHTML = '<span style="color:orange">Medium!</span>';
+			strength.innerHTML = '<span style="color:orange">보통</span>';
 		} else {
-			strength.innerHTML = '<span style="color:red">Weak!</span>';
+			strength.innerHTML = '<span style="color:red">사용불가</span>';
 		}
 	}
 </script>
@@ -49,7 +49,7 @@
 		<div class="col-sm-4 offset-sm-4">
 			<form action="RegisterController.do" method="post" onsubmit="return checkRegForm()">
 				<div class="input-group mb-3">
-					<input type="email" class="form-control" name="email" id="email" required="required" placeholder="이메일"> <input type="hidden" id="flag" value="">
+					<input type="email" class="form-control" name="email" id="email" required="required" placeholder="아이디(이메일)"> <input type="hidden" id="flag" value="">
 					<div class="input-group-append">
 						<button type="button" onclick="checkEmail()" class="btn btn-outline-primary">중복확인</button>
 					</div>
@@ -57,20 +57,20 @@
 				</div>
 				<%-- input group mb-3 --%>
 				<div class="input-group mb-3">
-					<input type="password" class="form-control" name="password" id="pass" required="required" placeholder="패스워드" maxlength="100" onkeyup="return passwordChanged();">
+					<input type="password" class="form-control" name="password" id="pass" required="required" placeholder="비밀번호" maxlength="100" onkeyup="return passwordChanged();">
 					<div class="input-group-append">
-						<span id="strength" class="input-group-text">패스워드 강도</span>
+						<span id="strength" class="input-group-text">보안</span>
 					</div>
 				</div>
 				<%-- input group mb-3 --%>
 				<div class="input-group mb-3">
-					<input type="password" class="form-control" name="confirmPassword" id="confirmPass" required="required" placeholder="패스워드확인">
+					<input type="password" class="form-control" name="confirmPassword" id="confirmPass" required="required" placeholder="비밀번호 재확인">
 				</div>
 				<div class="input-group mb-3">
-					<input type="text" class="form-control" name="nickname" required="required" placeholder="별명">
+					<input type="text" class="form-control" name="nickname" required="required" placeholder="닉네임">
 				</div>
 				<div class="input-group mb-3">
-					<input type="email" class="form-control" name="github" required="required" placeholder="github email">
+					<input type="text" class="form-control" name="github" required="required" placeholder="github 주소">
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">회원가입</button>
 			</form>
