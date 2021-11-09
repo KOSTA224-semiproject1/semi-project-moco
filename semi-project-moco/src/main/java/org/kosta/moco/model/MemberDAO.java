@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -109,4 +110,48 @@ public class MemberDAO {
 		}
 		return memberVO;
 	}
+	
+	//마이페이지 회원정보 조회 - 작성자 : 김진아 2021-11-09
+	public MemberVO memberInfo(String email) throws SQLException{
+		
+		MemberVO memberVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con=dataSource.getConnection();
+			String sql ="select email, password, nickname, github from MOCO_MEMBER where email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				memberVO = new MemberVO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
+			}
+				
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		
+		return memberVO;
+	}
+	//회원정보수정 - 작성자 : 김진아 2021-11-09
+	public void updateMember(MemberVO vo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "update MOCO_MEMBER set password=? , nickname=? , github=? where email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getPassword());
+			pstmt.setString(2, vo.getNickname());
+			pstmt.setString(3, vo.getGithub()); 
+			pstmt.setString(4, vo.getEmail());
+			pstmt.executeUpdate();
+			
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
+	
 }
