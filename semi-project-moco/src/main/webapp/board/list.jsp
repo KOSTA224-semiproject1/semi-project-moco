@@ -2,7 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container" style="margin-top: 50px; padding: 0px 100px;">
-<h3>${requestScope.language} 게시판</h3>
+	<div>
+		<div style="display: inline-block;">
+			<h3>${requestScope.language} 게시판</h3>
+		</div>
+		<div style="display: inline-block; float: right;">
+			<button type="button" class="btn btn-primary" onclick="moveToMainPage()">카테고리</button>
+			<button type="button" class="btn btn-primary" onclick="moveToWritePage()">글쓰기</button>
+		</div>
+	</div>
 	<table class="table table-hover table-striped" style="margin-top: 30px;">
 		<thead>
 			<tr style="background-color: #d0ebff">

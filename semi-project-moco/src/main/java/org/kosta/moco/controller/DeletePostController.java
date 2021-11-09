@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.kosta.moco.model.BoardDAO;
+import org.kosta.moco.model.PostVO;
 
 public class DeletePostController implements Controller {
 
@@ -15,8 +16,13 @@ public class DeletePostController implements Controller {
 			throw new ServletException("게시글 삭제는 post 방식만 허용");
 		
 		String postNo = request.getParameter("postNo");
+		System.out.println(postNo);
+		PostVO pvo = BoardDAO.getInstance().getPostingByPostNo(postNo);
 		BoardDAO.getInstance().deletePostByPostNo(Integer.parseInt(postNo));
-		return "redirect:ListPageController.do"; //글 삭제 후 게시글 리스트를 보여줌
+		System.out.println(pvo);
+		int languageCode = pvo.getLvo().getLanguage_code();
+		System.out.println(languageCode);
+		return "redirect:ListPageController.do?languageCode=" + languageCode; //글 삭제 후 게시글 리스트를 보여줌
 	}
 
 }

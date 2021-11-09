@@ -181,7 +181,7 @@ public class BoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select b.post_no, b.post_title, b.post_content, b.post_code, to_char(b.post_regdate, 'yyyy-mm-dd') as post_regdate, b.hits, m.nickname ");
+			sql.append("select b.post_no, b.post_title, b.post_content, b.post_code, to_char(b.post_regdate, 'yyyy-mm-dd') as post_regdate, b.hits, m.nickname, m.email, b.language_code ");
 			sql.append("from moco_qna_board b, moco_member m ");
 			sql.append("where b.email = m.email and b.post_no = ?");
 			pstmt = con.prepareStatement(sql.toString());
@@ -199,7 +199,12 @@ public class BoardDAO {
 				
 				MemberVO mvo = new MemberVO();
 				mvo.setNickname(rs.getString(7));
+				mvo.setEmail(rs.getString(8));
 				pvo.setMvo(mvo);
+				
+				LanguageVO lvo = new LanguageVO();
+				lvo.setLanguage_code(rs.getInt(9));
+				pvo.setLvo(lvo);
 			}
 		} finally {
 			closeAll(pstmt, con);
