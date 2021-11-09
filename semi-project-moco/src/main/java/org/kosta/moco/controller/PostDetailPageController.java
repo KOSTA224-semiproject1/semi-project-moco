@@ -12,6 +12,9 @@ public class PostDetailPageController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String languageCode = request.getParameter("languageCode");
+		request.setAttribute("languageCode", languageCode);
+		
 		String postNo = request.getParameter("postNo");
 		
 		@SuppressWarnings("unchecked")

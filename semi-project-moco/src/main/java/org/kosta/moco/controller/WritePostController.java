@@ -24,6 +24,8 @@ public class WritePostController implements Controller {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String codeContent = request.getParameter("codeContent");
+		System.out.println(request.getParameter("languageCode"));
+		int languageCode = Integer.parseInt(request.getParameter("languageCode"));
 		
 		PostVO postVO = new PostVO();
 		postVO.setPost_title(title);
@@ -32,13 +34,13 @@ public class WritePostController implements Controller {
 		postVO.setMvo((MemberVO)session.getAttribute("mvo"));
 		LanguageVO lvo = new LanguageVO();
 		//lvo.setLanguage(request.getAttribute("language"));
-		lvo.setLanguage_code(Integer.parseInt((String) request.getAttribute("languageCode")));
-		postVO.setLvo(lvo); //프로그래밍 언어 코드 , 추후 "lvo" 부분 확인 필수!!
+		lvo.setLanguage_code(languageCode);
+		postVO.setLvo(lvo); 
 		
 		BoardDAO.getInstance().posting(postVO);
 		System.out.println(title + " 게시글 등록 완료");
 		
-		return "redirect:ListPageController.do"; //글 등록 후 게시글 리스트를 보여줌
+		return "redirect:ListPageController.do?languageCode=" + languageCode; //글 등록 후 게시글 리스트를 보여줌
 	}
 
 }

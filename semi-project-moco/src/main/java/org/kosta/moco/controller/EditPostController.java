@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.kosta.moco.model.BoardDAO;
+import org.kosta.moco.model.LanguageVO;
 import org.kosta.moco.model.PostVO;
 
 public class EditPostController implements Controller {
@@ -29,7 +30,9 @@ public class EditPostController implements Controller {
 		
 		BoardDAO.getInstance().editPostByPostNo(postVO);
 		
-		return "redirect:ListPageController.do";
+		int languageCode = Integer.parseInt(request.getParameter("languageCode"));
+			
+		return "redirect:ListPageController.do?languageCode=" + languageCode;
 	}
 	
 }
