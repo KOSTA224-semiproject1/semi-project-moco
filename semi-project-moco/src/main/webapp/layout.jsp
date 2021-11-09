@@ -7,7 +7,25 @@
 	<title>Insert title here</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%-- 부트스트랩 --%>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+	
+	<%-- codemirror CDN --%>
+	<script src="codemirror/lib/codemirror.js"></script>
+	<link href="codemirror/lib/codemirror.css" rel="stylesheet"/>
+	<!--  언어설정 설정하기 -->
+	<script src="codemirror/mode/xml/xml.js"></script>
+	<script src="codemirror/mode/clike/clike.js"></script>
+	<script src="codemirror/mode/python/clike.js"></script>
+	<!--  테마 설정하기 -->
+	<link href="codemirror/theme/dracula.css" rel="stylesheet"/>
+	<link href="codemirror/theme/solarized.css" rel="stylesheet"/>
+	<link href="codemirror/theme/darcula.css" rel="stylesheet"/>
+	<link href="codemirror/theme/icecoder.css" rel="stylesheet"/>
+	<link href="codemirror/theme/duotone-light.css" rel="stylesheet"/>
+	<link href="codemirror/theme/eclipse.css" rel="stylesheet"/>
+	<link href="codemirror/theme/eclipse.css" rel="stylesheet"/>
+	
 	<style type="text/css">
 		.logo{
 			width: 75px;
@@ -35,6 +53,13 @@
 		
 		.title {
 			width: 50%;
+		}
+		.comment-header{
+		    position: relative;
+		    color: var(--color-fg-default);
+		    background-color: var(--color-canvas-default);
+		    border: 1px solid var(--color-border-default);
+		    border-radius: 6px;
 		}
 	</style>
 </head>
@@ -65,5 +90,13 @@
       document.getElementById("etcBoard").addEventListener('click', function(e) {
     	  location.href = "ListPageController.do?languageCode=4";
       });
+      
+      function moveToMainPage() {
+    	  location.href = "MainPageController.do";
+      }
+      
+      function moveToWritePage() {
+    	  location.href = "WritePostPageController.do";
+      }
    </script>
 </body>
