@@ -76,6 +76,7 @@
       }
       
       document.getElementById("javaBoard").addEventListener('click', function(e) {
+    	  console.log("test");
     	  location.href = "ListPageController.do?languageCode=1";
       });
       
@@ -94,9 +95,10 @@
       function moveToMainPage() {
     	  location.href = "MainPageController.do";
       }
-      
-      function moveToWritePage() {
-    	  location.href = "WritePostPageController.do";
+
+	  function moveToWritePage(code) {
+    	  location.href = "WritePostPageController.do?languageCode=" + code;
       }
+
    </script>
 </body>

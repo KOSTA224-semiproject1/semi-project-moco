@@ -8,7 +8,7 @@
 		</div>
 		<div style="display: inline-block; float: right;">
 			<button type="button" class="btn btn-primary" onclick="moveToMainPage()">카테고리</button>
-			<button type="button" class="btn btn-primary" onclick="moveToWritePage()">글쓰기</button>
+			<button type="button" class="btn btn-primary" onclick="moveToWritePage('${requestScope.languageCode}')">글쓰기</button>
 		</div>
 	</div>
 	<table class="table table-hover table-striped" style="margin-top: 30px;">
@@ -30,7 +30,7 @@
 					<td>
 						<c:choose>
 							<c:when test="${sessionScope.mvo != null}">
-								<a href="PostDetailPageController.do?postNo=${post.post_no}">${post.post_title}</a>
+								<a href="PostDetailPageController.do?postNo=${post.post_no}&languageCode=${requestScope.languageCode}">${post.post_title}</a>
 							</c:when>
 							<c:otherwise>
 								${post.post_title}
