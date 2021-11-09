@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container" style="padding: 0px 100px">
    <div class="row row-cols-1 row-cols-md-2" style="margin-top: 50px;">
-      <div class="col mb-4">
+      <div class="col mb-4" id="javaBoard">
            <div class="card text-center">
               <div class="lang-img-box">
                  <img src="images/java.png" class="card-img-top lang-img" alt="...">
@@ -13,7 +13,7 @@
              </div>
            </div>
       </div>
-      <div class="col mb-4">
+      <div class="col mb-4" id="cBoard">
            <div class="card text-center">
               <div class="lang-img-box">
                  <img src="images/c.png" class="card-img-top lang-img" alt="...">
@@ -23,7 +23,7 @@
              </div>
            </div>
       </div>
-      <div class="col mb-4">
+      <div class="col mb-4" id="pythonBoard">
            <div class="card text-center">
               <div class="lang-img-box">
                  <img src="images/python.png" class="card-img-top lang-img" alt="...">
@@ -33,7 +33,7 @@
              </div>
            </div>
       </div>
-      <div class="col mb-4">
+      <div class="col mb-4" id="etcBoard">
            <div class="card text-center">
               <div class="lang-img-box">
                  <img src="images/etc.png" class="card-img-top lang-img" alt="...">
@@ -43,5 +43,5 @@
              </div>
            </div>
       </div>
-   </div>
+	</div>
 </div>

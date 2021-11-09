@@ -18,6 +18,13 @@ public class CommentVO {
 		this.mvo = mvo;
 		this.pvo = pvo;
 	}
+	public CommentVO(int comment_no, String comment_content, String comment_regdate, MemberVO mvo) {
+		super();
+		this.comment_no = comment_no;
+		this.comment_content = comment_content;
+		this.comment_regdate = comment_regdate;
+		this.mvo = mvo;
+	}
 	public int getComment_no() {
 		return comment_no;
 	}
