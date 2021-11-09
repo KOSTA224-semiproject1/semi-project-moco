@@ -45,14 +45,13 @@
 	                            document.getElementById("updateForm").submit();
 	                        }
 	                 }
-	                 
 	             </script>
 	             <form action="DeletePostController.do" id="deleteForm" method="post">
 	                 <input type="hidden" name="postNo" id="no" value="${requestScope.pvo.post_no}">
 	             </form>
 	             <form action="EditPostPageController.do" id="updateForm" method="post">
 	                    <input type="hidden" name="postNo" id="no" value="${requestScope.pvo.post_no}">
-	                    <input type="hidden" name="languageCode" id="no" value="${requestScope.languageCode}">
+	                    <input type="hidden" name="languageCode" id="no" value="${requestScope.pvo.languageCode}">
 	                </form>
 	            <button type="button" class="btn btn-primary" onclick="deletePost()">삭제</button>
 	            <button type="button" class="btn btn-primary" onclick="updatePost()">수정</button>
@@ -60,4 +59,5 @@
 	      </tr>
 	   </c:if>
 	</table>
+	<c:import url="${requestScope.url2}"></c:import>
 </div>
