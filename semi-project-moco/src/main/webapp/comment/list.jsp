@@ -34,4 +34,19 @@
 	    </div>
 	</div>
 	</c:forEach>
+	<%-- 댓글 작성 창 --%>
+	<div class="card-mb-2">
+	    <div class="card-header bg-light" style="text-align: left; font-variant:border">
+	           <label><b>댓글작성 * </b></label>
+	    </div>
+	    <div class="card-body">
+	        <ul class="list-group list-group-flush">
+	            <li class="list-group-item">
+	            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+	            <button type="button" class="btn btn-primary" id="comment-create-btn">제출</button>
+	            <!--  <button type="button" class="btn btn-dark mt-3" onClick="javascript:addReply();">post reply</button> -->
+	            </li>
+	        </ul>
+	    </div>
+	</div>
 </table>	
