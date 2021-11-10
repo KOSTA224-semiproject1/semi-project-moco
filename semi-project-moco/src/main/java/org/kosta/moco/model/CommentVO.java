@@ -4,6 +4,7 @@ public class CommentVO {
 	private int comment_no;
 	private String comment_content;
 	private String comment_regdate;
+	private String is_selected;
 	private MemberVO mvo;
 	private PostVO pvo;
 	public CommentVO() {
@@ -42,6 +43,12 @@ public class CommentVO {
 	}
 	public void setComment_regdate(String comment_regdate) {
 		this.comment_regdate = comment_regdate;
+	}
+	public String getIs_selected() {
+		return is_selected;
+	}
+	public void setIs_selected(String is_selected) {
+		this.is_selected = is_selected;
 	}
 	public MemberVO getMvo() {
 		return mvo;

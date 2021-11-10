@@ -179,4 +179,26 @@ public class MemberDAO {
 		}
 	}
 	
+	/**
+	 * 
+	 * 게시글에서 작성자가 채택하기 버튼을 누르면 해당 댓글 작성자의 채택수를 1 증가 시키는 메서드
+	 * 이때 작성자의 email을 통해서 해당 멤버를 찾고 thumbs = thumbs + 1을 한다. 
+	 * 
+	 * @param email	: 댓글 작성자의 이메일
+	 * @throws SQLException
+	 */
+	public void selectComment(String email) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "update moco_member set thumbs = thumbs + 1 where email = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+			
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
 }
