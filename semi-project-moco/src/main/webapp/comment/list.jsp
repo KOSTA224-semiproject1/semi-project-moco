@@ -3,21 +3,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <table class="table">
 	<c:forEach items="${requestScope.commentList}" var="comment">
-	    <%-- <tr>
-	      <td>${comment.comment_no}</td>
-	      <td>${comment.content}</td>
-	      <td>${comment.id}</td>
-	      <td><button>삭제</button></td>
-	    </tr> --%>
 		   <div  class="container" style="margin-top: 50px; padding: 0px 100px;">
 		   <div class="card">
 		     <div class="card-header">
-		       ${comment.mvo.nickname}
+		       ${comment.mvo.nickname} &nbsp; &nbsp;  <span style="font-size:12px">${comment.comment_regdate}</span>
+		       <div style="display: inline-block; float: right;">
+		          <c:if test="${requestScope.pvo.can_select eq 'N'}">
+    		          <a href="javascript:selectComment('${comment.comment_no}', '${comment.mvo.email }')" style="color:blue">채택하기</a>
+		          </c:if>
+		          <c:if test="${requestScope.pvo.can_select eq 'Y' && comment.is_selected eq 'Y'}">
+    		          <img alt="채택됨" src="images/selected.png">
+		          </c:if>
+		       </div>
 		     </div>
 		     <div class="card-body">
 		       <p id="comment_${comment.comment_no}" class="card-text" style="display:block;">${comment.comment_content}</p>
 			   <textarea id="content_${comment.comment_no}" type="text" style="display: none; width: 400px" row="4">${comment.comment_content}</textarea>
-		       <input type="hidden" id ="original_content_${comment.comment_no}" value="${comment.comment_content}">
+		       <input type="hidden" id="original_content_${comment.comment_no}" value="${comment.comment_content}">
 		       <%-- 수정하기 버튼 누를 경우  : 수정완료 버튼이 표시되게 한다. --%>
 		       <%-- 수정은 해당 댓글의 작성자만 수정가능하다. --%>
 		       <c:if test="${sessionScope.mvo.email == comment.mvo.email}"> 
@@ -43,6 +45,13 @@
         <form action="EditCommentController.do" method="post" id="editForm">
              <input type="hidden" value="${requestScope.pvo.post_no}" id="postNo" name="postNo">
              <input type="hidden" value="" name="comment_no" id="comment_no_edit">
+             <input type="hidden" name="languageCode" id="no" value="${requestScope.pvo.lvo.language_code}">
+             <input type="hidden" value="" id="postContent" name="postContent">
+        </form>
+        <form action="SelectCommentController.do" method="post" id="selectForm">
+             <input type="hidden" value="${requestScope.pvo.post_no}" id="postNo" name="postNo">
+             <input type="hidden" value="" name="comment_no" id="comment_no_select">
+             <input type="hidden" value="" name="email" id="comment_email">
              <input type="hidden" name="languageCode" id="no" value="${requestScope.pvo.lvo.language_code}">
              <input type="hidden" value="" id="postContent" name="postContent">
         </form>
@@ -94,6 +103,14 @@
 		        document.getElementById("comment_no").value=commentNo;    
 		        document.getElementById('deleteForm').submit();
 		    }
+		    <%-- 해당 댓글 채택하기 버튼 동작 구현--%>
+		    function selectComment(commentNo, comment_email){
+		        alert(commentNo, comment_email);
+		        document.getElementById("comment_no_select").value=commentNo;        
+		        document.getElementById("comment_email").value=comment_email;        
+                document.getElementById("selectForm").submit();
+            }
+		    
 		</script>
 	</c:forEach>
 	<%-- 댓글 작성 창 --%>
