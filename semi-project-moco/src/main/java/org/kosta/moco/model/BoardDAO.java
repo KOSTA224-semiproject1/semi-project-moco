@@ -96,9 +96,9 @@ public class BoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select v.rnum, v.post_no, v.post_title, to_char(v.post_regdate, 'yyyy-mm-dd') as post_regdate, m.nickname, v.hits, v.language_code, v.language ");
+			sql.append("select v.rnum, v.post_no, v.post_title, to_char(v.post_regdate, 'yyyy-mm-dd') as post_regdate, m.nickname, v.hits, v.language_code, v.language, v.can_select ");
 			sql.append("from ( ");
-			sql.append("select row_number() over(order by b.post_regdate desc) as rnum, b.post_no, b.post_title, b.post_regdate, b.hits, b.email, b.language_code, l.language ");
+			sql.append("select row_number() over(order by b.post_regdate desc) as rnum, b.post_no, b.post_title, b.post_regdate, b.hits, b.email, b.language_code, l.language, b.can_select ");
 			sql.append("from moco_qna_board b, moco_service_language l ");
 			sql.append("where b.language_code = l.language_code and l.language_code = ? ");
 			sql.append(") v, moco_member m ");
@@ -116,7 +116,7 @@ public class BoardDAO {
 				pvo.setPost_title(rs.getString(3));
 				pvo.setPost_regdate(rs.getString(4));
 				pvo.setHits(rs.getInt(6));
-				
+				pvo.setCan_select(rs.getString(9));
 				MemberVO mvo = new MemberVO();
 				mvo.setNickname(rs.getString(5));
 				pvo.setMvo(mvo);
@@ -181,7 +181,7 @@ public class BoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select b.post_no, b.post_title, b.post_content, b.post_code, to_char(b.post_regdate, 'yyyy-mm-dd') as post_regdate, b.hits, m.nickname, m.email, b.language_code ");
+			sql.append("select b.post_no, b.post_title, b.post_content, b.post_code, to_char(b.post_regdate, 'yyyy-mm-dd') as post_regdate, b.hits, m.nickname, m.email, b.language_code, b.can_select ");
 			sql.append("from moco_qna_board b, moco_member m ");
 			sql.append("where b.email = m.email and b.post_no = ?");
 			pstmt = con.prepareStatement(sql.toString());
@@ -205,6 +205,7 @@ public class BoardDAO {
 				LanguageVO lvo = new LanguageVO();
 				lvo.setLanguage_code(rs.getInt(9));
 				pvo.setLvo(lvo);
+				pvo.setCan_select(rs.getString(10));
 			}
 		} finally {
 			closeAll(pstmt, con);
@@ -248,4 +249,26 @@ public class BoardDAO {
 		}
 		return list;
 	}
+	/**
+	 * 채택하기 기능을 사용한 게시물은 더 이상 채택을 해서는 안된다.
+	 * 따라서 DB에 반영을 해주어야 한다.
+	 * 
+	 * @param pno : 해당 게시물 번호
+	 * @throws SQLException 
+	 */
+	public void DoNotSelectByNo(String pno) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="update moco_qna_board set can_select= ? where post_no = ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, "Y");
+			pstmt.setString(2, pno);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	
 }

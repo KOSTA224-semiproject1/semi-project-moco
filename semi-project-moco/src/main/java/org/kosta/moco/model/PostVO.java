@@ -7,13 +7,13 @@ public class PostVO {
 	private String post_code;
 	private String post_regdate;
 	private int hits;
+	private String can_select;
 	private MemberVO mvo;
 	private LanguageVO lvo;
+	
 	public PostVO() {
 		super();
 	}
-	
-	
 	public PostVO(int post_no, String post_title, String post_regdate, int hits, LanguageVO lvo) {
 		super();
 		this.post_no=post_no;
@@ -70,6 +70,12 @@ public class PostVO {
 	}
 	public void setHits(int hits) {
 		this.hits = hits;
+	}
+	public String getCan_select() {
+		return can_select;
+	}
+	public void setCan_select(String can_select) {
+		this.can_select = can_select;
 	}
 	public MemberVO getMvo() {
 		return mvo;

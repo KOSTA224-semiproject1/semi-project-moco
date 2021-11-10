@@ -56,7 +56,7 @@ public class CommentDAO {
 			 */
 			con=dataSource.getConnection();//dbcp로부터 컨넥션을 빌려온다
 			StringBuilder sql=new StringBuilder();
-			sql.append("select comment_no, comment_content, to_char(comment_regdate, 'yyyy-mm-dd'), c.email, m.nickname, m.github ");
+			sql.append("select comment_no, comment_content, to_char(comment_regdate, 'yyyy-mm-dd'), c.email, m.nickname, m.github, c.is_selected ");
 			sql.append("from moco_comment c, moco_member m where c.email=m.email and post_no=? ");
 			sql.append("order by comment_no asc");
 			pstmt=con.prepareStatement(sql.toString());
@@ -68,6 +68,7 @@ public class CommentDAO {
 				mvo.setNickname(rs.getString(5));
 				mvo.setGithub(rs.getString(6));
 				CommentVO cvo = new CommentVO(rs.getInt(1), rs.getString(2), rs.getString(3), mvo);
+				cvo.setIs_selected(rs.getString(7));
 				list.add(cvo);
 			}
 		}finally {
@@ -106,7 +107,7 @@ public class CommentDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con=dataSource.getConnection();
-			String sql = "insert into moco_comment values(moco_comment_seq.nextval, ?, sysdate, ? , ?)";
+			String sql = "insert into moco_comment(comment_no, comment_content, comment_regdate, email, post_no) values(moco_comment_seq.nextval, ?, sysdate, ? , ?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, content);		
 			pstmt.setString(2, email);		
@@ -118,7 +119,7 @@ public class CommentDAO {
 	}
 	/**
 	 * 
-	 * 해당 댓글(no)를 변경하는 메서드
+	 * 해당 댓글(no)의 내용을 변경하는 메서드
 	 * 
 	 * @param no :      댓글 No
 	 * @param content : 변경할 댓글 내용
@@ -132,6 +133,27 @@ public class CommentDAO {
 			String sql="update moco_comment set comment_content =?  where comment_no=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, content);
+			pstmt.setString(2, no);
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt, con);
+		}
+	}
+	
+	/**
+	 * 해당 댓글을 채택하는 메서드
+	 * 
+	 * @param no : 댓글의 번호
+	 * @throws SQLException
+	 */
+	public void selectComment(String no) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="update moco_comment set is_selected= ? where comment_no = ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, "Y");
 			pstmt.setString(2, no);
 			pstmt.executeUpdate();
 		}finally {
