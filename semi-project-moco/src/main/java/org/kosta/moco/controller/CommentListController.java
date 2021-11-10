@@ -12,9 +12,8 @@ public class CommentListController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		int pno = Integer.parseInt(request.getParameter("post_no"));
-		int pno = 1;
-		ArrayList<CommentVO> list = CommentDAO.getInstance().getCommentListByNo(pno);
+		String postNo = request.getParameter("post_no");
+		ArrayList<CommentVO> list = CommentDAO.getInstance().getCommentListByNo(postNo);
 		request.setAttribute("commentList", list);
 		request.setAttribute("url", "comment/list.jsp");
 		System.out.println(list);
