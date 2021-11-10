@@ -28,7 +28,7 @@
 <link href="codemirror/theme/duotone-light.css" rel="stylesheet" />
 <link href="codemirror/theme/eclipse.css" rel="stylesheet" />
 <link href="codemirror/theme/eclipse.css" rel="stylesheet" />
-
+<link href="css/button.css" rel="stylesheet" />
 <style type="text/css">
 /*마이페이지와 마이페이지 수정 둘다 쓰이는 css*/
 /*마이페이지*/

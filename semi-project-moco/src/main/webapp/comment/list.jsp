@@ -8,8 +8,8 @@
 		     <div class="card-header">
 		       ${comment.mvo.nickname} &nbsp; &nbsp;  <span style="font-size:12px">${comment.comment_regdate}</span>
 		       <div style="display: inline-block; float: right;">
-		          <c:if test="${requestScope.pvo.can_select eq 'N'}">
-    		          <a href="javascript:selectComment('${comment.comment_no}', '${comment.mvo.email }')" style="color:blue">채택하기</a>
+		          <c:if test="${requestScope.pvo.can_select eq 'N' && sessionScope.mvo.email==requestScope.pvo.mvo.email}">
+    		          <a class="button-62" href="javascript:selectComment('${comment.comment_no}', '${comment.mvo.email }')" >채택하기</a>
 		          </c:if>
 		          <c:if test="${requestScope.pvo.can_select eq 'Y' && comment.is_selected eq 'Y'}">
     		          <img alt="채택됨" src="images/selected.png">
@@ -23,7 +23,7 @@
 		       <%-- 수정하기 버튼 누를 경우  : 수정완료 버튼이 표시되게 한다. --%>
 		       <%-- 수정은 해당 댓글의 작성자만 수정가능하다. --%>
 		       <c:if test="${sessionScope.mvo.email == comment.mvo.email}"> 
-		          <a id="editBtn_${comment.comment_no}" href="javascript:editStart('${comment.comment_no}')" style="color:blue; display: block;">수정</a>
+		          <a id="editBtn_${comment.comment_no}" href="javascript:editStart('${comment.comment_no}')" style="color:blue; display: inline;">수정</a>
 		       </c:if>
 		       <!-- <button id="editStartBtn" class="btn btn-primary" onclick="editStart()" style="display: block;">Edit Start</button> -->
 		       <!--  <button id="editEndBtn" class="btn btn-primary" onclick="editEnd()" style="display: none;">Edit End</button> -->
@@ -105,7 +105,6 @@
 		    }
 		    <%-- 해당 댓글 채택하기 버튼 동작 구현--%>
 		    function selectComment(commentNo, comment_email){
-		        alert(commentNo, comment_email);
 		        document.getElementById("comment_no_select").value=commentNo;        
 		        document.getElementById("comment_email").value=comment_email;        
                 document.getElementById("selectForm").submit();
@@ -143,7 +142,7 @@
 			    <div class="card-body">
 			        <ul class="list-group list-group-flush">
 			            <li class="list-group-item">
-			            <textarea class="form-control" id="exampleFormControlTextarea1" name = "comment_content" rows="5"></textarea> <br>
+			            <textarea class="form-control" id="exampleFormControlTextarea1" name = "comment_content" rows="5" required="required"></textarea> <br>
 			            <button type="submit" class="btn btn-primary" id="comment-create-btn">작성</button>
 			            <!--  <button type="button" class="btn btn-dark mt-3" onClick="javascript:addReply();">post reply</button> -->
 			            </li>
