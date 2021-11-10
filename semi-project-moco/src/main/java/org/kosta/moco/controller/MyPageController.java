@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.kosta.moco.model.BoardDAO;
 import org.kosta.moco.model.MemberDAO;
 import org.kosta.moco.model.MemberVO;
 import org.kosta.moco.model.PostVO;
@@ -25,7 +26,7 @@ public class MyPageController implements Controller {
 		MemberVO mvo = (MemberVO) request.getSession().getAttribute("mvo");// 현재 로그인 중인 회원 정보를 sessionMember에 담는다
 		MemberVO loginMemberVO = MemberDAO.getInstance().memberInfo(mvo.getEmail());// 현재 로그인 중인 회원의 email로 nickname,
 																					// github를 알아낸다
-		ArrayList<PostVO> list = MemberDAO.getInstance().getMemberPosts(mvo.getEmail());// 현재 로그인 중인 회원의 email로
+		ArrayList<PostVO> list = BoardDAO.getInstance().getMemberPosts(mvo.getEmail());// 현재 로그인 중인 회원의 email로
 																						// nickname, github를 알아낸다
 		RankVO rank = MemberDAO.getInstance().getMemberRank(mvo.getEmail());
 
