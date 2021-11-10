@@ -31,7 +31,6 @@
 
 <style type="text/css">
 /*마이페이지와 마이페이지 수정 둘다 쓰이는 css*/
-
 /*마이페이지*/
 .user_email {
 	position: absolute;
@@ -41,13 +40,11 @@
 	top: 126px;
 	background: #C4C4C4;
 }
-
 .email {
 	position: relative;
 	top: 30px;
 	text-align: center;
 }
-
 .user_nickname {
 	position: absolute;
 	width: 758px;
@@ -56,13 +53,11 @@
 	top: 284px;
 	background: #C4C4C4;
 }
-
 .nickname {
 	position: relative;
 	top: 30px;
 	text-align: center;
 }
-
 .user_github {
 	position: absolute;
 	width: 758px;
@@ -71,13 +66,11 @@
 	top: 441px;
 	background: #C4C4C4;
 }
-
 .github {
 	position: relative;
 	top: 30px;
 	text-align: center;
 }
-
 .user_rank {
 	position: absolute;
 	text-align: center;
@@ -87,13 +80,11 @@
 	top: 500px;
 	width: 418px;
 }
-
 .grade {
 	position: relative;
 	top: 30px;
 	text-align: center;
 }
-
 .user_rank_img {
 	position: absolute;
 	width: 418px;
@@ -102,13 +93,11 @@
 	top: 126px;
 	background: #C4C4C4;
 }
-
 .center_img {
 	position: relative;
 	top: 70px;
 	text-align: center;
 }
-
 .user_posts {
 	position: absolute;
 	width: 1199px;
@@ -117,7 +106,6 @@
 	top: 606px;
 	background: #C4C4C4;
 }
-
 .edit_profile {
 	position: absolute;
 	width: 1199px;
@@ -125,7 +113,6 @@
 	left: 375px;
 	top: 948px;
 }
-
 /* 마이페이지 수정 */
 .e_user_email {
 	position: absolute;
@@ -135,7 +122,6 @@
 	top: 126px;
 	background: #C4C4C4;
 }
-
 .e_user_nickname {
 	position: absolute;
 	width: 692px;
@@ -144,7 +130,6 @@
 	top: 233px;
 	background: #C4C4C4;
 }
-
 .e_user_github {
 	position: absolute;
 	width: 692px;
@@ -153,7 +138,6 @@
 	top: 340px;
 	background: #C4C4C4;
 }
-
 .e_user_password {
 	position: absolute;
 	width: 692px;
@@ -162,27 +146,22 @@
 	top: 453px;
 	background: #C4C4C4;
 }
-
 /* 로고 */
 .logo {
 	width: 75px;
 }
-
 .lang-img {
 	width: 150px;
 }
-
 .lang-img-box {
 	margin: 20px 0;
 }
-
 /* 메인페이지 카테고리 */
 .card {
 	box-shadow: none;
 	transform: scale(1);
 	transition-duration: 0.3s;
 }
-
 .card:hover {
 	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 	transform: scale(1.005);
@@ -192,31 +171,25 @@
 .logo {
 	width: 75px;
 }
-
 .lang-img {
 	width: 150px;
 }
-
 .lang-img-box {
 	margin: 20px 0;
 }
-
 .card {
 	box-shadow: none;
 	transform: scale(1);
 	transition-duration: 0.3s;
 }
-
 .card:hover {
 	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 	transform: scale(1.005);
 	transition-duration: 0.3s;
 }
-
 .title {
 	width: 50%;
 }
-
 .comment-header {
 	position: relative;
 	color: var(- -color-fg-default);
@@ -258,10 +231,8 @@
       function moveToMainPage() {
     	  location.href = "MainPageController.do";
       }
-
 	  function moveToWritePage(code) {
     	  location.href = "WritePostPageController.do?languageCode=" + code;
       }
-
    </script>
 </body>

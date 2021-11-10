@@ -21,12 +21,12 @@ public class MyPageController implements Controller {
 		if (session == null || session.getAttribute("mvo") == null) {
 			return "redirect:index.jsp";
 		}
-
-		MemberVO mvo = (MemberVO) request.getSession().getAttribute("mvo");// 현재 로그인 중인 회원 정보를 sessionMember에 담는다
-		MemberVO loginMemberVO = MemberDAO.getInstance().memberInfo(mvo.getEmail());// 현재 로그인 중인 회원의 email로 nickname,
-																					// github를 알아낸다
+		
+		MemberVO mvo = (MemberVO)request.getSession().getAttribute("mvo");//현재 로그인 중인 회원 정보를 받아온다
+		MemberVO loginMemberVO = MemberDAO.getInstance().memberInfo(mvo.getEmail());//현재 로그인 중인 회원의 email로 nickname, github를 알아낸다
+		session.setAttribute("loginMemberVO", loginMemberVO);//현재 로그인한 회원의 email, nickname, github 정보를 가져온다(이때 edit-memberinfo.jsp에서 비번 출력을 위해 password도 받아왔다.)
+		
 		ArrayList<PostVO> list = MemberDAO.getInstance().getMemberPosts(mvo.getEmail());// 현재 로그인 중인 회원의 email로
-																						// nickname, github를 알아낸다
 		RankVO rank = MemberDAO.getInstance().getMemberRank(mvo.getEmail());
 
 		session.setAttribute("rank", rank);// 민주

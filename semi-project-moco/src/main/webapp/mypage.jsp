@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style type="text/css">
-
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); 
 .container{
 	color:#666666;font-family:'Nanum Gothic';font-size:20px;}
@@ -61,7 +60,7 @@
 		<div class="center_img">
 
 			<c:choose>
-				<c:when test="${sessionScope.rank.grade =='새내기'}">
+				<c:when test="${sessionScope.rank.grade == '새내기'}">
 					<img src="images/freshman.png">
 				</c:when>
 				<c:when test="${sessionScope.rank.grade=='헌내기'}">
@@ -76,7 +75,6 @@
 				<c:when test="${sessionScope.rank.grade =='졸업자'}">
 					<img src="images/freshman.png">
 				</c:when>
-
 			</c:choose>
 		</div>
 	</div>
@@ -87,7 +85,3 @@
 		</form>
 	</div>
 </div>
-
-
-
-

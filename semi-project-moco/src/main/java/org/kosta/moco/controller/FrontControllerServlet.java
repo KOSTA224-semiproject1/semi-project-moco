@@ -32,11 +32,6 @@ public class FrontControllerServlet extends HttpServlet {
 		permitAllList.add("RegisterController");
 		permitAllList.add("EmailCheckController");
 		permitAllList.add("RegisterPageController");
-		permitAllList.add("WritePostController");
-		permitAllList.add("WritePostPageController");
-		permitAllList.add("EditPostController");
-		permitAllList.add("EditPostPageController");
-		permitAllList.add("DeletePostController");
 	}
 	
 	/**
