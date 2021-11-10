@@ -31,6 +31,23 @@
 		}
 	}
 	function passwordChanged() {
+		let confirmPass = document.getElementById('confirmPass');
+		let pass = document.getElementById('pass');
+		let confirmResult = document.getElementById('confirmResult');
+		
+		if(confirmPass.value == pass.value) {
+			confirmResult.textContent = "비밀번호가 일치합니다";
+			confirmResult.style.color = "#007bff";
+		}
+		else {
+			confirmResult.textContent = "비밀번호가 일치하지 않습니다";
+			confirmResult.style.color = "red";
+		}
+		if(confirmPass.value == "" && pass.value == "") {
+			confirmResult.textContent = "";
+		}
+		
+		
 		let passwordLength = document.getElementById('passwordLength');
 		
 		var strength = document.getElementById('strength');
@@ -161,6 +178,9 @@
 		else {
 			confirmResult.textContent = "비밀번호가 일치하지 않습니다";
 			confirmResult.style.color = "red";
+		}
+		if(confirmPass.value == "" && pass.value == "") {
+			confirmResult.textContent = "";
 		}
 	}
 </script>
