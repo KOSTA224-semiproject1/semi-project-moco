@@ -67,10 +67,16 @@
 					<input type="password" class="form-control" name="confirmPassword" id="confirmPass" required="required" placeholder="비밀번호 재확인">
 				</div>
 				<div class="input-group mb-3">
-					<input type="text" class="form-control" name="nickname" required="required" placeholder="닉네임">
+					<input id="nickname" type="text" class="form-control" name="nickname" required="required" placeholder="닉네임" onkeyup="checkNickname()">
+				</div>
+				<div>
+					<p id="duplicateResult" style="font-size: 13px"><p>
 				</div>
 				<div class="input-group mb-3">
-					<input type="text" class="form-control" name="github" required="required" placeholder="github 주소">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon3">www.github.com/</span>
+					</div>
+					<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="github" required="required" placeholder="username">
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">회원가입</button>
 			</form>
@@ -80,3 +86,37 @@
 	<%-- row div --%>
 </div>
 <%-- container --%>
+<script>
+	function checkNickname() {
+		console.log("checkNickname");
+		
+		let nickname = document.getElementById("nickname").value;
+		let duplicateResult = document.getElementById("duplicateResult");
+		
+		let xhr = new XMLHttpRequest();
+		// 서버로부터 응답 받았을 때 동작할 익명함수를 등록
+		xhr.onload = () => {
+			console.log(xhr.responseText);
+			const json = xhr.responseText;
+			const result = JSON.parse(json);
+			
+			console.log(result.duplicate);
+			if(result.duplicate === false) {
+				console.log("사용가능");
+				duplicateResult.innerHTML = "사용 가능한 닉네임입니다!";
+				duplicateResult.style.color = "#007bff";
+			}
+			else {
+				console.log("사용불가");
+				duplicateResult.innerHTML = "사용 불가한 닉네임입니다!";
+				duplicateResult.style.color = "red";
+			}
+			
+			if(nickname == "") {
+				duplicateResult.textContent = "";
+			}
+		}
+		xhr.open("get", "NicknameCheckServlet?nickname=" + nickname);
+		xhr.send();
+	}
+</script>
