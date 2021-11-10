@@ -184,6 +184,8 @@ local.properties
 
 .sts4-cache/
 
+# MailPasswordVO.java
+MailPasswordVO.java
 ​
 # tes sql
 *.sql

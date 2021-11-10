@@ -19,7 +19,9 @@ public class RegisterController implements Controller {
 		MemberVO mvo = new MemberVO(email, password, nickname, github);
 		MemberDAO.getInstance().registerMember(mvo);
 		
-		return "redirect:MainPageController.do";
+		request.setAttribute("userEmail", email);
+		
+		return "SendEmailController.do";
 	}
 
 }
