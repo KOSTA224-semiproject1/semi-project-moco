@@ -39,7 +39,6 @@
 	height: 145px;
 	left: 816px;
 	top: 126px;
-	background: #C4C4C4;
 }
 
 .email {
@@ -54,7 +53,6 @@
 	height: 145px;
 	left: 816px;
 	top: 284px;
-	background: #C4C4C4;
 }
 
 .nickname {
@@ -69,7 +67,6 @@
 	height: 145px;
 	left: 816px;
 	top: 441px;
-	background: #C4C4C4;
 }
 
 .github {
@@ -96,18 +93,17 @@
 
 .user_rank_img {
 	position: absolute;
-	width: 418px;
-	height: 358px;
+	object-fit: cover;
+	width: 350x;
+	height: 350px;
 	left: 375px;
 	top: 126px;
-	background: #C4C4C4;
+	difplay: table;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
-.center_img {
-	position: relative;
-	top: 70px;
-	text-align: center;
-}
 
 .user_posts {
 	position: absolute;
@@ -115,7 +111,7 @@
 	height: 321px;
 	left: 375px;
 	top: 606px;
-	background: #C4C4C4;
+
 }
 
 .edit_profile {
@@ -123,7 +119,7 @@
 	width: 1199px;
 	height: 98px;
 	left: 375px;
-	top: 948px;
+	top: 1030px;
 }
 
 /* 마이페이지 수정 */
@@ -133,7 +129,6 @@
 	height: 91px;
 	left: 608px;
 	top: 126px;
-	background: #C4C4C4;
 }
 
 .e_user_nickname {
@@ -142,7 +137,6 @@
 	height: 91px;
 	left: 608px;
 	top: 233px;
-	background: #C4C4C4;
 }
 
 .e_user_github {
@@ -151,7 +145,6 @@
 	height: 91px;
 	left: 608px;
 	top: 340px;
-	background: #C4C4C4;
 }
 
 .e_user_password {
@@ -160,7 +153,6 @@
 	height: 91px;
 	left: 608px;
 	top: 453px;
-	background: #C4C4C4;
 }
 
 /* 로고 */
