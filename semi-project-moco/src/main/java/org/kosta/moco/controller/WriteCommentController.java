@@ -12,10 +12,11 @@ public class WriteCommentController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		// 삭제 후 해당 게시물 페이지로 이동하기 위한 셋업
 		String postNo = request.getParameter("postNo");
-		String comment_content = request.getParameter("comment_content");
 		String languageCode = request.getParameter("languageCode");
+		
+		String comment_content = request.getParameter("comment_content");
 		MemberVO vo = (MemberVO) request.getSession().getAttribute("mvo");
 		String email = vo.getEmail();
 		CommentDAO.getInstance().writeCommentByNo(comment_content, email, postNo);

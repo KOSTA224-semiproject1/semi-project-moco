@@ -51,7 +51,7 @@
 	             </form>
 	             <form action="EditPostPageController.do" id="updateForm" method="post">
 	                    <input type="hidden" name="postNo" id="no" value="${requestScope.pvo.post_no}">
-	                    <input type="hidden" name="languageCode" id="no" value="${requestScope.pvo.languageCode}">
+	                    <input type="hidden" name="languageCode" id="no" value="${requestScope.pvo.lvo.language_code}">
 	                </form>
 	            <button type="button" class="btn btn-primary" onclick="deletePost()">삭제</button>
 	            <button type="button" class="btn btn-primary" onclick="updatePost()">수정</button>

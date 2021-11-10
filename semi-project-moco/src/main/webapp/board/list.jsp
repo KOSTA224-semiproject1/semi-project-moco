@@ -30,7 +30,7 @@
 					<td>
 						<c:choose>
 							<c:when test="${sessionScope.mvo != null}">
-								<a href="PostDetailPageController.do?postNo=${post.post_no}&languageCode=${requestScope.languageCode}">${post.post_title}</a>
+								<a href="PostDetailPageController.do?postNo=${post.post_no}&languageCode=${languageCode}">${post.post_title}</a>
 							</c:when>
 							<c:otherwise>
 								${post.post_title}

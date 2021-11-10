@@ -82,14 +82,14 @@ public class CommentDAO {
 	 * @param no : DB에서 자동 발급되는 seq 번호
 	 * @throws SQLException 
 	 */
-	public void deleteCommentBycno(int no) throws SQLException {
+	public void deleteCommentByNo(String no) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="delete from moco_comment where no=?";
+			String sql="delete from moco_comment where comment_no=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, no);
+			pstmt.setString(1, no);
 			pstmt.executeUpdate();
 		}finally {
 			closeAll(pstmt, con);
@@ -113,6 +113,28 @@ public class CommentDAO {
 			pstmt.setString(3, pno);		
 			pstmt.executeUpdate();
 		} finally {
+			closeAll(pstmt, con);
+		}
+	}
+	/**
+	 * 
+	 * 해당 댓글(no)를 변경하는 메서드
+	 * 
+	 * @param no :      댓글 No
+	 * @param content : 변경할 댓글 내용
+	 * @throws SQLException
+	 */
+	public void updateCommentByNo(String no, String content) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			con=dataSource.getConnection();
+			String sql="update moco_comment set comment_content =?  where comment_no=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, content);
+			pstmt.setString(2, no);
+			pstmt.executeUpdate();
+		}finally {
 			closeAll(pstmt, con);
 		}
 	}
