@@ -12,6 +12,17 @@ public class PostVO {
 	public PostVO() {
 		super();
 	}
+	
+	
+	public PostVO(int post_no, String post_title, String post_regdate, int hits, LanguageVO lvo) {
+		super();
+		this.post_no=post_no;
+		this.post_title = post_title;
+		this.post_regdate = post_regdate;
+		this.hits = hits;
+		this.lvo = lvo;
+	}
+
 	public PostVO(int post_no, String post_title, String post_content, String post_code, String post_regdate, int hits,
 			MemberVO mvo, LanguageVO lvo) {
 		super();
