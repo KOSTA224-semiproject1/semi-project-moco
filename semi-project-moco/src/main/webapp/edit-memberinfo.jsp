@@ -1,15 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <style type="text/css" style="padding: 0px 100px">
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); 
 .container{
 	color:#666666;font-family:'Nanum Gothic';font-size:20px;}
 }
 </style>
+<script type="text/javascript">
+function checkRegForm() {
+	let nickname = document.getElementById("nickname");
+	let nicknameFlag = document.getElementById("nicknameFlag");
+	if(nickname.value != nicknameFlag.value) {
+		alert("중복된 닉네임 입니다.\n사용 가능한 닉네임으로 변경해주세요");
+		return false;
+	}
+	
+	if (document.getElementById("pass").value != document
+			.getElementById("confirmPass").value) {
+		alert("비밀번호가 일치하지 않습니다");
+		return false;
+	}
+	
+}
+function passwordChanged() {
+	let confirmPass = document.getElementById('confirmPass');
+	let pass = document.getElementById('pass');
+	let confirmResult = document.getElementById('confirmResult');
+	
+	if(confirmPass.value == pass.value) {
+		confirmResult.textContent = "비밀번호가 일치합니다";
+		confirmResult.style.color = "#007bff";
+	}
+	else {
+		confirmResult.textContent = "비밀번호가 일치하지 않습니다";
+		confirmResult.style.color = "red";
+	}
+	if(confirmPass.value == "" && pass.value == "") {
+		confirmResult.textContent = "";
+	}
+	
+	
+	let passwordLength = document.getElementById('passwordLength');
+	
+	var strength = document.getElementById('strength');
+	var strongRegex = new RegExp(
+			"^(?=.{10,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+	var mediumRegex = new RegExp(
+			"^(?=.{8,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$",
+			"g");
+	var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+	var pwd = document.getElementById("pass");
+	
+	if (pwd.value.length == 0) {
+		strength.innerHTML = '보안';
+		passwordLength.textContent = "";
+	} else if (false == enoughRegex.test(pwd.value)) {
+		// strength.innerHTML = '8자리 이상 입력';
+		passwordLength.textContent = "비밀번호는 6자리 이상 입력하셔야 합니다";
+		passwordLength.style.color = "red";
+	} else if (strongRegex.test(pwd.value)) {
+		strength.innerHTML = '<span style="color:green">안전</span>';
+		passwordLength.textContent = "";
+	} else if (mediumRegex.test(pwd.value)) {
+		strength.innerHTML = '<span style="color:orange">보통</span>';
+		passwordLength.textContent = "";
+	} else {
+		strength.innerHTML = '<span style="color:red">약함</span>';
+		passwordLength.textContent = "";
+	}
+}
+</script>
 <div class="container" >
-
-<form action="EditMyInfoFormSubmitController.do" method="post">	
+<form action="EditMyInfoFormSubmitController.do" method="post" onsubmit="return checkRegForm()">	
 	<div class="e_user_email">
 		<table class="table" style="text-align: center; border: 1px solid #dddddd">
 			<tbody>
@@ -37,7 +102,11 @@
 			<tbody>
 				<tr>
 					<td style="background-color: #fafafafa; text-align:center; "><h5>깃허브</h5></td>
-					<td><input name="github" class="form-control" type="text" size="20" value="${sessionScope.loginMemberVO.github}"></td>
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon3">www.github.com/</span>
+					</div>
+					<c:set var="githubUserName" value="${sessionScope.loginMemberVO.github}"/>
+					<td><input id="basic-url" aria-describedby="basic-addon3" name="github" class="form-control" type="text" size="20" value="${fn:substring(githubUserName,15,fn:length(githubUserName)  ) }"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -46,14 +115,37 @@
 		<table class="table" style="text-align: center; border: 1px solid #dddddd">
 			<tbody>
 				<tr>
-					<td style="background-color: #fafafafa; text-align:center; "><h5>비밀번호</h5></td>
-					<td><input name="password" class="form-control" type="text" size="20" value="${sessionScope.loginMemberVO.password}"></td>
+					<div class="input-group mb-3">
+						<td style="background-color: #fafafafa; text-align:center; "><h5>비밀번호</h5></td>
+						<td><input name="password" id="pass" class="form-control" type="password" maxlength="100" size="20" value="${sessionScope.loginMemberVO.password}" onkeyup="return passwordChanged();"></td>
+						<div class="input-group-append">
+							<span id="strength" class="input-group-text">보안</span>
+						</div>
+					</div>
+					<div>
+						<p id="passwordLength" style="font-size: 13px"><p>
+					</div>	
+				</tr>
+			</tbody>
+		</table>
+	</div>	
+	<div class="e_user_password_check">
+		<table class="table" style="text-align: center; border: 1px solid #dddddd">
+			<tbody>
+				<tr>
+					<div class="input-group mb-3">
+						<td style="background-color: #fafafafa; text-align:center; "><h5>비밀번호 확인</h5></td>
+						<td><input name="confirmPassword" id="confirmPass" class="form-control" type="password" size="20" value="${sessionScope.loginMemberVO.password}" onkeyup="checkPassword()"></td>
+					</div>
+					<div>
+						<p id="confirmResult" style="font-size: 13px"><p>
+					</div>	
 				</tr>
 			</tbody>
 		</table>
 	</div>	
 	<div class="edit_profile">
-		<button type="submit" class="btn btn-primary btn-lg btn-block">수정하기</button>
+		<button type="submit" class="btn btn-primary btn-lg btn-block" onclick="">수정하기</button>
 	</div>
 	<div class="user_rank">
 		<div class="grade">${sessionScope.rank.grade}</div>
@@ -119,7 +211,6 @@
 		
 		let nickname = document.getElementById("nickname").value;
 		let duplicateResult = document.getElementById("duplicateResult");
-		
 		let nicknameFlag = document.getElementById("nicknameFlag");
 		
 		let xhr = new XMLHttpRequest();
@@ -130,7 +221,7 @@
 			const result = JSON.parse(json);
 			
 			console.log(result.duplicate);
-			if(result.duplicate === false) {
+			if(result.duplicate === false || nickname=="${sessionScope.loginMemberVO.nickname}") {
 				console.log("사용가능");
 				duplicateResult.innerHTML = "사용 가능한 닉네임입니다";
 				duplicateResult.style.color = "#007bff";
@@ -150,5 +241,23 @@
 		xhr.open("get", "NicknameCheckServlet?nickname=" + nickname);
 		xhr.send();
 	}
+	function checkPassword() {
+		let confirmPass = document.getElementById('confirmPass');
+		let pass = document.getElementById('pass');
+		let confirmResult = document.getElementById('confirmResult');
+		
+		if(confirmPass.value == pass.value) {
+			confirmResult.textContent = "비밀번호가 일치합니다";
+			confirmResult.style.color = "#007bff";
+		}
+		else {
+			confirmResult.textContent = "비밀번호가 일치하지 않습니다";
+			confirmResult.style.color = "red";
+		}
+		if(confirmPass.value == "" && pass.value == "") {
+			confirmResult.textContent = "";
+		}
+	}
+
 </script>
 
