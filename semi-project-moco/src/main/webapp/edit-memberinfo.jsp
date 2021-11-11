@@ -91,7 +91,7 @@ function passwordChanged() {
 			<tbody>
 				<tr>
 					<td style="background-color: #fafafafa; text-align:center; "><h5>닉네임</h5></td>
-					<td><input name="nickname" class="form-control" type="text" id="nickname" size="20" value="${sessionScope.loginMemberVO.nickname}" onkeyup="checkNickname()"></td>
+					<td><input name="nickname" class="form-control" type="text" id="nickname" size="20" value="${sessionScope.loginMemberVO.nickname}" required="required" onkeyup="checkNickname()"></td>
 					    <input id="nicknameFlag" type="hidden" value="">
 						<p id="duplicateResult" style="font-size: 13px"><p>	    
 				</tr>
@@ -107,7 +107,7 @@ function passwordChanged() {
 						<span class="input-group-text" id="basic-addon3">www.github.com/</span>
 					</div>
 					<c:set var="githubUserName" value="${sessionScope.loginMemberVO.github}"/>
-					<td><input id="basic-url" aria-describedby="basic-addon3" name="github" class="form-control" type="text" size="20" value="${fn:substring(githubUserName,15,fn:length(githubUserName)  ) }"></td>
+					<td><input id="basic-url" aria-describedby="basic-addon3" name="github" class="form-control" type="text" size="20" required="required"  value="${fn:substring(githubUserName,15,fn:length(githubUserName)  ) }"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -118,7 +118,7 @@ function passwordChanged() {
 				<tr>
 					<div class="input-group mb-3">
 						<td style="background-color: #fafafafa; text-align:center; "><h5>비밀번호</h5></td>
-						<td><input name="password" id="pass" class="form-control" type="password" maxlength="100" size="20" value="${sessionScope.loginMemberVO.password}" onkeyup="return passwordChanged();"></td>
+						<td><input name="password" id="pass" class="form-control" type="password" maxlength="100" size="20" required="required"  value="${sessionScope.loginMemberVO.password}" onkeyup="return passwordChanged();"></td>
 						<div class="input-group-append">
 							<span id="strength" class="input-group-text">보안</span>
 						</div>
@@ -136,7 +136,7 @@ function passwordChanged() {
 				<tr>
 					<div class="input-group mb-3">
 						<td style="background-color: #fafafafa; text-align:center; "><h5>비밀번호 확인</h5></td>
-						<td><input name="confirmPassword" id="confirmPass" class="form-control" type="password" size="20" value="${sessionScope.loginMemberVO.password}" onkeyup="checkPassword()"></td>
+						<td><input name="confirmPassword" id="confirmPass" class="form-control" type="password" size="20" required="required"  value="${sessionScope.loginMemberVO.password}" onkeyup="checkPassword()"></td>
 					</div>
 					<div>
 						<p id="confirmResult" style="font-size: 13px"><p>
