@@ -18,13 +18,19 @@
 <script src="codemirror/mode/clike/clike.js"></script>
 <script src="codemirror/mode/python/clike.js"></script>
 <!--  테마 설정하기 -->
-<link href="codemirror/theme/dracula.css" rel="stylesheet" />
-<link href="codemirror/theme/solarized.css" rel="stylesheet" />
 <link href="codemirror/theme/darcula.css" rel="stylesheet" />
-<link href="codemirror/theme/icecoder.css" rel="stylesheet" />
+<link href="codemirror/theme/dracula.css" rel="stylesheet" />
+<link href="codemirror/theme/duotone-dark.css" rel="stylesheet" />
+<link href="codemirror/theme/eclipse.css" rel="stylesheet" />
 <link href="codemirror/theme/duotone-light.css" rel="stylesheet" />
-<link href="codemirror/theme/eclipse.css" rel="stylesheet" />
-<link href="codemirror/theme/eclipse.css" rel="stylesheet" />
+<link href="codemirror/theme/icecoder.css" rel="stylesheet" />
+<link href="codemirror/theme/solarized.css" rel="stylesheet" />
+<link href="codemirror/theme/tomorrow-night-bright.css" rel="stylesheet" />
+<link href="codemirror/theme/tomorrow-night-eighties.css" rel="stylesheet" />
+<link href="codemirror/theme/rubyblue.css" rel="stylesheet" />
+<link href="codemirror/theme/pastel-on-dark.css" rel="stylesheet" />
+<link href="codemirror/theme/neo.css" rel="stylesheet" />
+<link href="codemirror/theme/twilight.css" rel="stylesheet" />
 <link href="css/button.css" rel="stylesheet" />
 <style type="text/css">
 /*마이페이지와 마이페이지 수정 둘다 쓰이는 css*/

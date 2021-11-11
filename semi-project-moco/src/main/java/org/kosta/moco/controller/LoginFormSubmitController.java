@@ -32,7 +32,7 @@ public class LoginFormSubmitController implements Controller {
 			// 세션에 저장한다
 			// 한번 읽은 게시글에 대해서는 조회수가 재증가 되는 것을 막도록 하기 위해서임
 			session.setAttribute("myboardNo", new ArrayList<String>());
-
+			session.setAttribute("theme", memberVO.getThema());
 			// 로그인 완료 후 게시판 리스트 화면( 홈화면) 을 제공하기 위해 ListController로 redirect
 			return "redirect:MainPageController.do";
 		}

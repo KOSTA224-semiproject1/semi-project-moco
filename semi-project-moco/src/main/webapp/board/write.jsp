@@ -20,7 +20,7 @@
 						var editor = CodeMirror.fromTextArea(document
 								.getElementById('editor'), {
 							mode : "clike",
-							theme : "duotone-light",
+							theme : "${sessionScope.theme}",
 							lineNumbers : true,
 						});
 					</script>

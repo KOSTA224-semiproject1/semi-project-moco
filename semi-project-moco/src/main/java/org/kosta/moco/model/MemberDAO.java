@@ -96,7 +96,7 @@ public class MemberDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select nickname from moco_member where email=? and password=?";
+			String sql = "select nickname, thema from moco_member where email=? and password=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, email);
 			pstmt.setString(2, password);
@@ -104,7 +104,8 @@ public class MemberDAO {
 			if (rs.next()) {
 				memberVO = new MemberVO();
 				memberVO.setEmail(email);
-				memberVO.setNickname(rs.getString(1));;
+				memberVO.setNickname(rs.getString(1));
+				memberVO.setThema(rs.getString(2));
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
@@ -226,5 +227,25 @@ public class MemberDAO {
 			closeAll(pstmt, con);
 		}
 	}
-
+	/**
+	 * 해당 테마로 DB내의 테마 정보를 수정 
+	 * 
+	 * @param thema : 변경할 테마
+	 * @param email : 변경을 당할 회원의 이메일
+	 * @throws SQLException
+	 */
+	public void changeThema(String thema, String email) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "update moco_member set thema = ? where email = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, thema);
+			pstmt.setString(2, email);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
 }
