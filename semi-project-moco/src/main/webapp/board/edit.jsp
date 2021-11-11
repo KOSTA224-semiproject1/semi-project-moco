@@ -7,13 +7,14 @@
 		<table class="table table-borderless">
 			<tr>
 				<td>
+					<p class="font-weight-bold" style="font-size: 1.5rem">제목</p>
 					<input type="hidden" name="postNo" value="${pvo.post_no}">
 					<textarea rows="1" class="form-control" name="title" value="${pvo.post_title}" required="required">${pvo.post_title}</textarea>
 				</td>
 			</tr>
 				<tr>
 				<td>
-					<label><b>소스코드</b></label> &nbsp; &nbsp;
+					<p class="font-weight-bold" style="font-size: 1.5rem">소스코드</p>
 					<pre>
 						<textarea id="editor" name="codeContent" rows="10">${requestScope.pvo.post_code}</textarea>
 					</pre>
@@ -29,12 +30,13 @@
 			</tr>
 			<tr>
 				<td>
+					<p class="font-weight-bold" style="font-size: 1.5rem">본문</p>
 					<textarea rows="10" class="form-control" name="content">${pvo.post_content}</textarea>
 				</td>
 			</tr>
 		</table>
 		<div class="text-center">
-			<button class="btn btn-primary">등록</button>
+			<button class="btn btn-primary" style="margin-bottom: 30px;">등록</button>
 		</div>
 	</form>
 </div>

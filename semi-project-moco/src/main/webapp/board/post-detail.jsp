@@ -4,14 +4,14 @@
 <div  class="container" style="margin-top: 50px; padding: 0px 100px;">
 	<table class="table">
 	   <tr>
-	      <td>제목:   ${requestScope.pvo.post_title}</td>
-	      <td>작성자: ${requestScope.pvo.mvo.nickname}</td>
-	      <td>작성일: ${requestScope.pvo.post_regdate}</td>
-	      <td>조회수: ${requestScope.pvo.hits}</td>
+	      <td><b>제목:   ${requestScope.pvo.post_title}</b></td>
+	      <td><b>작성자: ${requestScope.pvo.mvo.nickname}</b></td>
+	      <td><b>작성일: ${requestScope.pvo.post_regdate}</b></td>
+	      <td><b>조회수: ${requestScope.pvo.hits}</b></td>
 	   </tr>
 	   <tr>
 	        <td colspan="4">
-	            <label><b>소스코드</b></label> &nbsp;  &nbsp;
+	            <p class="font-weight-bold" style="font-size: 1rem">소스코드</p>
 	               <pre><textarea id = "editor" name="editor" rows="10">${requestScope.pvo.post_code}</textarea></pre>
 	               <script>
 	                   var editor = CodeMirror.fromTextArea
@@ -25,7 +25,7 @@
 	        </td>
 	    </tr>
 	   <tr>
-	      <td colspan="4">
+	      <td colspan="4" style="border: none">
 	         <%-- pre : db 에 저장된 글형식 그대로 표현  --%>
 	         <pre><font size="4"> ${requestScope.pvo.post_content} </font></pre>
 	      </td>
