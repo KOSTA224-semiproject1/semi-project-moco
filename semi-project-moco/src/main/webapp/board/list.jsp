@@ -11,6 +11,8 @@
 			<button type="button" class="btn btn-primary" onclick="moveToWritePage('${requestScope.languageCode}')">글쓰기</button>
 		</div>
 	</div>
+	
+	
 	<table class="table table-hover table-striped" style="margin-top: 30px;">
 		<thead>
 			<tr style="background-color: #d0ebff">
@@ -44,6 +46,9 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	
+	
 	<%-- 페이징 처리 --%>
 	<ul class="pagination justify-content-center" style="margin:20px 0">
 		<c:if test="${pagingBean.previousPageGroup}">
