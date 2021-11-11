@@ -59,5 +59,5 @@
 	      </tr>
 	   </c:if>
 	</table>
-	<c:import url="${requestScope.url2}"></c:import>
 </div>
+<c:import url="${requestScope.url2}"></c:import>
