@@ -21,7 +21,7 @@ public class EditMyInfoFormSubmitController implements Controller {
 		//사용자가 입력한 수정값을 받아와서 MemberVO 타입의 Emov를 생성해주고. 
 		String email = request.getParameter("email");
 		String nickname=request.getParameter("nickname");
-		String github=request.getParameter("github");
+		String github= "www.github.com/" + request.getParameter("github");
 		String password=request.getParameter("password");
 		MemberVO Emov = new MemberVO(email, password, nickname, github);
 		
