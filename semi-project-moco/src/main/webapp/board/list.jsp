@@ -27,7 +27,7 @@
 <div class="container" style="margin-top: 50px; padding: 0px 100px;">
 	<div>
 		<div style="display: inline-block;">
-			<h3>${requestScope.language}게시판</h3>
+			<h3>${requestScope.language} 게시판</h3>
 		</div>
 		<div style="display: inline-block; float: right;">
 			<div class="btn-group">

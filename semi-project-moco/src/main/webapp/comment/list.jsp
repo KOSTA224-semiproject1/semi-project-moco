@@ -116,7 +116,8 @@
 		</script>
 	</c:forEach>
 </table>
-<div class="container" style="margin-top: 20px; padding: 0px 100px;">	
+<div class="container" style="margin-top: 20px; padding: 0px 100px;">
+	<p class="font-weight-bold" style="font-size: 1.5rem">댓글</p>
 		<div class="card-mb-2" style="text-align: center; border: 1px solid #dddddd">
 		    <div class="card-header bg-light" style="text-align: left; font-weight: normal">
 		        <label><b>댓글작성 * </b></label>
