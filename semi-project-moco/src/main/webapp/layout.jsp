@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -8,10 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
 <%-- codemirror CDN --%>
 <script src="codemirror/lib/codemirror.js"></script>
@@ -40,11 +36,13 @@
 	top: 126px;
 	background: #C4C4C4;
 }
+
 .email {
 	position: relative;
 	top: 30px;
 	text-align: center;
 }
+
 .user_nickname {
 	position: absolute;
 	width: 758px;
@@ -53,11 +51,13 @@
 	top: 284px;
 	background: #C4C4C4;
 }
+
 .nickname {
 	position: relative;
 	top: 30px;
 	text-align: center;
 }
+
 .user_github {
 	position: absolute;
 	width: 758px;
@@ -66,11 +66,13 @@
 	top: 441px;
 	background: #C4C4C4;
 }
+
 .github {
 	position: relative;
 	top: 30px;
 	text-align: center;
 }
+
 .user_rank {
 	position: absolute;
 	text-align: center;
@@ -80,11 +82,13 @@
 	top: 500px;
 	width: 418px;
 }
+
 .grade {
 	position: relative;
 	top: 30px;
 	text-align: center;
 }
+
 .user_rank_img {
 	position: absolute;
 	width: 418px;
@@ -93,11 +97,13 @@
 	top: 126px;
 	background: #C4C4C4;
 }
+
 .center_img {
 	position: relative;
 	top: 70px;
 	text-align: center;
 }
+
 .user_posts {
 	position: absolute;
 	width: 1199px;
@@ -106,6 +112,7 @@
 	top: 606px;
 	background: #C4C4C4;
 }
+
 .edit_profile {
 	position: absolute;
 	width: 1199px;
@@ -122,6 +129,7 @@
 	top: 126px;
 	background: #C4C4C4;
 }
+
 .e_user_nickname {
 	position: absolute;
 	width: 692px;
@@ -130,6 +138,7 @@
 	top: 233px;
 	background: #C4C4C4;
 }
+
 .e_user_github {
 	position: absolute;
 	width: 692px;
@@ -138,6 +147,7 @@
 	top: 340px;
 	background: #C4C4C4;
 }
+
 .e_user_password {
 	position: absolute;
 	width: 692px;
@@ -150,9 +160,11 @@
 .logo {
 	width: 75px;
 }
+
 .lang-img {
 	width: 150px;
 }
+
 .lang-img-box {
 	margin: 20px 0;
 }
@@ -162,6 +174,7 @@
 	transform: scale(1);
 	transition-duration: 0.3s;
 }
+
 .card:hover {
 	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 	transform: scale(1.005);
@@ -171,25 +184,31 @@
 .logo {
 	width: 75px;
 }
+
 .lang-img {
 	width: 150px;
 }
+
 .lang-img-box {
 	margin: 20px 0;
 }
+
 .card {
 	box-shadow: none;
 	transform: scale(1);
 	transition-duration: 0.3s;
 }
+
 .card:hover {
 	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 	transform: scale(1.005);
 	transition-duration: 0.3s;
 }
+
 .title {
 	width: 50%;
 }
+
 .comment-header {
 	position: relative;
 	color: var(- -color-fg-default);
@@ -234,5 +253,11 @@
 	  function moveToWritePage(code) {
     	  location.href = "WritePostPageController.do?languageCode=" + code;
       }
+	  function onEnter() {
+		  var keyCode = window.event.keyCode;
+		  if(keyCode == 13) {
+			  searchForm.submit();
+		  }
+	  }
    </script>
 </body>
