@@ -12,7 +12,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
-
+<!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
 <%-- codemirror CDN --%>
 <script src="codemirror/lib/codemirror.js"></script>
 <link href="codemirror/lib/codemirror.css" rel="stylesheet" />
@@ -114,37 +116,59 @@
 	top: 948px;
 }
 /* 마이페이지 수정 */
+.e_nickname {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	text-align: center;
+	font-size: 18px;
+}
 .e_user_email {
 	position: absolute;
-	width: 692px;
-	height: 91px;
-	left: 608px;
+	width: 758px;
+	height: 94px;
+	left: 816px;
 	top: 126px;
 	background: #C4C4C4;
 }
 .e_user_nickname {
 	position: absolute;
-	width: 692px;
-	height: 91px;
-	left: 608px;
-	top: 233px;
+	width: 758px;
+	height: 94px;
+	left: 816px;
+	top: 248px;
 	background: #C4C4C4;
+}
+.e_user_nickname:hover{
+	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+	transform: scale(1.015);
+	transition-duration: 0.3s;
 }
 .e_user_github {
 	position: absolute;
-	width: 692px;
-	height: 91px;
-	left: 608px;
-	top: 340px;
+	width: 758px;
+	height: 94px;
+	left: 816px;
+	top: 370px;
 	background: #C4C4C4;
+}
+.e_user_github:hover{
+	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+	transform: scale(1.015);
+	transition-duration: 0.5s, 1s;
 }
 .e_user_password {
 	position: absolute;
-	width: 692px;
-	height: 91px;
-	left: 608px;
-	top: 453px;
+	width: 758px;
+	height: 94px;
+	left: 816px;
+	top: 495px;
 	background: #C4C4C4;
+}
+.e_user_password:hover{
+	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+	transform: scale(1.015);
+	transition-duration: 0.5s;
 }
 /* 로고 */
 .logo {
