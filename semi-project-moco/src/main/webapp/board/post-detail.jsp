@@ -38,7 +38,7 @@
 	             <script type="text/javascript">
 	                 function deletePost(){
 	                     if(confirm("삭제하시겠습니까?")){
-	                         document.getElementById("deleteForm").submit();
+	                         document.getElementById("deletePostForm").submit();
 	                     }
 	                 }function updatePost(){
 	                     if(confirm("수정하시겠습니까?")){
@@ -46,7 +46,7 @@
 	                        }
 	                 }
 	             </script>
-	             <form action="DeletePostController.do" id="deleteForm" method="post">
+	             <form action="DeletePostController.do" id="deletePostForm" method="post">
 	                 <input type="hidden" name="postNo" id="no" value="${requestScope.pvo.post_no}">
 	             </form>
 	             <form action="EditPostPageController.do" id="updateForm" method="post">
