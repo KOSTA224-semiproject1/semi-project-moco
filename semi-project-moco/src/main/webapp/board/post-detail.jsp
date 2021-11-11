@@ -1,7 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div  class="container" style="margin-top: 50px; padding: 0px 100px;">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<div class="container" style="margin-top: 50px; padding: 0px 100px;">
+	<div>
+		<script type="text/javascript">
+			function scrapPost() {
+				if (confirm("스크랩 하시겠습니까?")) {
+					document.getElementById("scrapForm").submit();
+				}
+			}
+		</script>
+		<form action="ScrapController.do" id="scrapForm" method="post">
+		<input type="hidden" name="postNo" id="postNo" value="${requestScope.pvo.post_no}">
+		<input type="hidden" name="email" id="email" value="${sessionScope.mvo.email}">
+			<button onclick="scrapPost()">스크랩</button>
+		</form>
+	</div><%-- 스크랩 --%>
+	
 	<table class="table">
 	   <tr>
 	      <td><b>제목:   ${requestScope.pvo.post_title}</b></td>

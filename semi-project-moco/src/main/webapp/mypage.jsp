@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container">
+	<a href="ScrapListPageController.do">스크랩리스트</a>
 	<div class="user_nickname">
 		<div class="nickname">닉네임 :
 			${sessionScope.loginMemberVO.nickname}</div>
