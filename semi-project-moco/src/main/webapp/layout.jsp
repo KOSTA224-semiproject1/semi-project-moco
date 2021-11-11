@@ -146,7 +146,14 @@
    width: 692px;
    height: 91px;
    left: 608px;
-   top: 453px;
+   top: 410px;
+}
+.e_user_password_check{
+   position: absolute;
+   width: 692px;
+   height: 91px;
+   left: 608px;
+   top: 530px;
 }
 /* 로고 */
 .logo {
