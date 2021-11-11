@@ -192,7 +192,13 @@ public class BoardDAO {
 
 		return list;
 	}
-
+	
+	
+	
+	
+	
+	
+	
 	public int getTotalPostCount(int languageCode) throws SQLException {
 		int totalPostCount = 0;
 		Connection con = null;

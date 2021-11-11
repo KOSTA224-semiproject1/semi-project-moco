@@ -14,15 +14,13 @@
 
 
 	<div class="user_nickname">
-		<div class="nickname">닉네임 :
-			${sessionScope.loginMemberVO.nickname}</div>
+		<div class="nickname">닉네임 : ${requestScope.memberVO.nickname}</div>
 	</div>
 	<div class="user_github">
-		<div class="github">깃허브주소 : ${sessionScope.loginMemberVO.github}
-		</div>
+		<div class="github">깃허브주소 : ${requestScope.memberVO.github}</div>
 	</div>
 	<div class="user_email">
-		<div class="email">이메일 : ${sessionScope.loginMemberVO.email}</div>
+		<div class="email">이메일 : ${requestScope.memberVO.email}</div>
 	</div>
 
 	<div class="user_posts">
@@ -37,17 +35,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${sessionScope.postList}" var="pvo">
+				<c:forEach items="${requestScope.postList}" var="pvo">
 					<tr>
-						<td><c:choose>
-								<c:when test="${sessionScope.mvo != null}">
-									<a
-										href="PostDetailPageController.do?postNo=${pvo.post_no}&languageCode=${pvo.lvo.language_code}">${pvo.post_title}</a>
-								</c:when>
-								<c:otherwise>
-								${pvo.post_title}
-							</c:otherwise>
-							</c:choose></td>
+						<td><a
+							href="PostDetailPageController.do?postNo=${pvo.post_no}&languageCode=${pvo.lvo.language_code}">${pvo.post_title}</a>
+						</td>
 						<td>${pvo.post_regdate}</td>
 						<td>${pvo.hits}</td>
 						<td>${pvo.lvo.language}</td>
@@ -60,24 +52,24 @@
 		<ul class="pagination justify-content-center" style="margin: 20px 0">
 			<c:if test="${pagingBean.previousPageGroup}">
 				<li class="page-item"><a class="page-link"
-					href="MyPageController.do?pageNo=${pagingBean.startPageOfPageGroup-1}">Previous</a></li>
+					href="WriterPageController.do?nickname=${requestScope.memberVO.nickname}&pageNo=${pagingBean.startPageOfPageGroup-1}">Previous</a></li>
 			</c:if>
 			<c:forEach begin="${pagingBean.startPageOfPageGroup}"
 				end="${pagingBean.endPageOfPageGroup}" var="page">
 				<c:choose>
 					<c:when test="${page == pagingBean.nowPage}">
 						<li class="page-item active"><a class="page-link"
-							href="MyPageController.do?pageNo=${page}">${page}</a></li>
+							href="WriterPageController.do?nickname=${requestScope.memberVO.nickname}&pageNo=${page}">${page}</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item"><a class="page-link"
-							href="MyPageController.do?pageNo=${page}">${page}</a></li>
+							href="WriterPageController.do?nickname=${requestScope.memberVO.nickname}&pageNo=${page}">${page}</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${pagingBean.nextPageGroup}">
 				<li class="page-item"><a class="page-link"
-					href="MyPageController.do?pageNo=${pagingBean.endPageOfPageGroup+1}">Next</a></li>
+					href="WriterPageController.do?nickname=${post.mvo.nickname}&pageNo=${pagingBean.endPageOfPageGroup+1}">Next</a></li>
 			</c:if>
 		</ul>
 
@@ -85,32 +77,32 @@
 
 
 	<div class="user_rank">
-		<div class="grade">${sessionScope.rank.grade}</div>
+		<div class="grade">${requestScope.rank.grade}</div>
 	</div>
 	<div class="user_rank_img">
 		<c:choose>
-			<c:when test="${sessionScope.rank.grade =='새내기'}">
+			<c:when test="${requestScope.rank.grade =='새내기'}">
 				<img src="images/freshman.png">
 			</c:when>
-			<c:when test="${sessionScope.rank.grade=='헌내기'}">
+			<c:when test="${requestScope.rank.grade=='헌내기'}">
 				<img src="images/sophomore.png">
 			</c:when>
-			<c:when test="${sessionScope.rank.grade=='사망년'}">
+			<c:when test="${requestScope.rank.grade=='사망년'}">
 				<img src="images/junior.png">
 			</c:when>
-			<c:when test="${sessionScope.rank.grade=='고인물'}">
+			<c:when test="${requestScope.rank.grade=='고인물'}">
 				<img src="images/senior.png">
 			</c:when>
-			<c:when test="${sessionScope.rank.grade =='졸업자'}">
+			<c:when test="${requestScope.rank.grade =='졸업자'}">
 				<img src="images/graduatee.png">
 			</c:when>
 		</c:choose>
 	</div>
 
-
-	<div class="edit_profile">
-		<form action="EditMyInfoController.do">
-			<button type="submit" class="btn btn-primary btn-lg btn-block">회원정보수정</button>
+	<div class="send_message">
+		<form action="MessageController.do">
+			<button type="submit" class="btn btn-primary btn-lg btn-block">쪽지
+				보내기</button>
 		</form>
 	</div>
 </div>

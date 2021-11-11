@@ -15,6 +15,12 @@ public class MemberVO implements Serializable {
 	}
 	
 	
+	public MemberVO(String email) {
+		super();
+		this.email = email;
+	}
+
+
 	public MemberVO(String email, String nickname, String github) {
 		super();
 		this.email = email;

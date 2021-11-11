@@ -112,6 +112,13 @@
    left: 375px;
    top: 1030px;
 }
+.send_message {
+	position: absolute;
+	width: 1199px;
+	height: 98px;
+	left: 375px;
+	top: 1030px;
+}
 /* 마이페이지 수정 */
 .e_user_email {
    position: absolute;
