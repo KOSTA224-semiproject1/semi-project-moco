@@ -26,7 +26,6 @@ public class LoginFormSubmitController implements Controller {
 			HttpSession session = request.getSession();
 			// 로그인 인증 정보 할당
 			session.setAttribute("mvo", memberVO);
-
 			// 조회수 재증가 방지를 위해
 			// 로그인한 회원이 게시글을 읽었을 때 게시물 번호를 저장하는 리스트를 생성해서
 			// 세션에 저장한다

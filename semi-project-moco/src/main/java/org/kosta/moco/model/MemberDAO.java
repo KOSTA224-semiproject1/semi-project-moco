@@ -104,7 +104,7 @@ public class MemberDAO {
 			if (rs.next()) {
 				memberVO = new MemberVO();
 				memberVO.setEmail(email);
-				memberVO.setNickname(rs.getString(1));;
+				memberVO.setNickname(rs.getString(1));
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
@@ -151,7 +151,11 @@ public class MemberDAO {
 			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				memberVO = new MemberVO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
+				memberVO = new MemberVO();
+				memberVO.setEmail(rs.getString(1));
+				memberVO.setPassword(rs.getString(2));
+				memberVO.setNickname(rs.getString(3));
+				memberVO.setGithub(rs.getString(4));
 			}
 
 		} finally {
@@ -191,12 +195,11 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "update MOCO_MEMBER set password=? , nickname=? , github=? where email=?";
+			String sql = "update MOCO_MEMBER set nickname=?, github=? where email=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, vo.getPassword());
-			pstmt.setString(2, vo.getNickname());
-			pstmt.setString(3, vo.getGithub());
-			pstmt.setString(4, vo.getEmail());
+			pstmt.setString(1, vo.getNickname());
+			pstmt.setString(2, vo.getGithub());
+			pstmt.setString(3, vo.getEmail());
 			pstmt.executeUpdate();
 
 		} finally {

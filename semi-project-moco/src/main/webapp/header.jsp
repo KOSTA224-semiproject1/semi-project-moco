@@ -14,8 +14,7 @@
 					</form>
 				</c:when>
 				<c:otherwise>
-					<span class="navbar-text">${sessionScope.loginMemberVO.nickname}님&nbsp;&nbsp;
-						, 안녕하세요.&nbsp;&nbsp;&nbsp;</span>
+					<span class="navbar-text">${sessionScope.mvo.nickname}님&nbsp;,&nbsp;안녕하세요.&nbsp;&nbsp;&nbsp;</span>
 					<form action="LogoutController.do" method="post" id="logoutForm"></form>
 					<button class="btn btn-primary me-md-2" onclick="logout()"
 						type="submit">로그아웃</button>

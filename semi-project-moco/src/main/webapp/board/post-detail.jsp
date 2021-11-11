@@ -9,22 +9,30 @@
 				}
 			}
 		</script>
-		<form action="ScrapController.do" id="scrapForm" method="post">
-		<input type="hidden" name="postNo" id="postNo" value="${requestScope.pvo.post_no}">
-		<input type="hidden" name="email" id="email" value="${sessionScope.mvo.email}">
-			<button onclick="scrapPost()">스크랩</button>
-		</form>
+
 	</div><%-- 스크랩 --%>
+	
+	<div>
+		<div style="display: inline-block;">
+			<h3 style="margin-bottom:20px;">${requestScope.pvo.post_title}</h3>
+		</div>
+		<div style="display: inline-block; float: right;">
+			<form action="ScrapController.do" id="scrapForm" method="post">
+			<input type="hidden" name="postNo" id="postNo" value="${requestScope.pvo.post_no}">
+			<input type="hidden" name="email" id="email" value="${sessionScope.mvo.email}">
+				<button class="btn btn-primary" onclick="scrapPost()">스크랩</button>
+			</form>
+		</div>
+	</div>
 	
 	<table class="table">
 	   <tr>
-	      <td><b>제목:   ${requestScope.pvo.post_title}</b></td>
 	      <td><b>작성자: ${requestScope.pvo.mvo.nickname}</b></td>
 	      <td><b>작성일: ${requestScope.pvo.post_regdate}</b></td>
 	      <td><b>조회수: ${requestScope.pvo.hits}</b></td>
 	   </tr>
 	   <tr>
-	        <td colspan="4">
+	        <td colspan="3">
 	            <p class="font-weight-bold" style="font-size: 1rem">소스코드</p>
 	               <pre><textarea id = "editor" name="editor" rows="10">${requestScope.pvo.post_code}</textarea></pre>
 	               <script>
@@ -39,7 +47,7 @@
 	        </td>
 	    </tr>
 	   <tr>
-	      <td colspan="4" style="border: none">
+	      <td colspan="3" style="border: none">
 	         <%-- pre : db 에 저장된 글형식 그대로 표현  --%>
 	         <pre><font size="4"> ${requestScope.pvo.post_content} </font></pre>
 	      </td>
@@ -48,7 +56,7 @@
 	   <c:if test="${requestScope.pvo.mvo.email == sessionScope.mvo.email}">
 	      <tr>
 	      <%--  부트스트랩에서 제공하는 중앙정렬 class : text-center   --%>
-	         <td colspan="4" class="text-center">
+	         <td colspan="3" class="text-center">
 	             <script type="text/javascript">
 	                 function deletePost(){
 	                     if(confirm("삭제하시겠습니까?")){

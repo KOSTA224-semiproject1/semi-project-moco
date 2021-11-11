@@ -80,16 +80,9 @@
    text-align: center;
 }
 .user_rank_img {
-   position: absolute;
-   object-fit: cover;
-   width: 350x;
-   height: 350px;
-   left: 375px;
-   top: 126px;
-   difplay: table;
-   background-size: cover;
-   background-repeat: no-repeat;
-   background-position: center;
+   width: 150x;
+   height: 150px;
+   margin-top: 20px;
 }
 .user_posts {
    position: absolute;
@@ -193,21 +186,71 @@
    border: 1px solid var(- -color-border-default);
    border-radius: 6px;
 }
-.animated {
+.animated1 {
 	transition-property: margin-top, opacity;
-	transition-duration: 2s;
+	transition-duration: 1.5s;
+}
+.animated2 {
+	transition-property: margin-right, opacity;
+	transition-duration: 1.5s;
+	transition-delay: 0.1s;
+}
+.animated3 {
+	transition-property: margin-left, opacity;
+	transition-duration: 1.5s;
+	transition-delay: 0.1s;
+}
+.animated4 {
+	transition-property: margin-top, opacity;
+	transition-duration: 1.5s;
+	transition-delay: 0.2s;
 }
 .navShadow {
 	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
 }
+.formBox {
+	border-radius: 15px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
 </style>
 <script>
 	function startPage() {
+		/*
 		let con = document.getElementById("con");
 		con.style.marginTop = "50px";
 		con.style.opacity = "1";
+		*/
+		let welcomText1 = document.getElementById("welcomText1");
+		
+		let monitor = document.getElementById("monitor");
+		let code = document.getElementById("code");
+		
+		let welcomText2 = document.getElementById("welcomText2");
+		let welcomText3 = document.getElementById("welcomText3");
+		
+		welcomText1.style.marginTop = "100px";
+		welcomText1.style.opacity = "1";
+		
+		monitor.style.marginRight = "0";
+		monitor.style.opacity = "1";
+		code.style.marginLeft = "0";
+		code.style.opacity = "1";
+		
+		welcomText2.style.opacity = "1";
+		welcomText3.style.opacity = "1";
 	}
 	window.onload = startPage;
+	
+	
+	document.addEventListener('scroll', () => {
+		const currentScrollPercentage = (window.scrollY);
+		console.log(currentScrollPercentage);
+		if(currentScrollPercentage > 300){
+			let con = document.getElementById("con");
+			con.style.marginTop = "200px";
+			con.style.opacity = "1";
+		}
+	});
 </script>
 </head>
 <body>

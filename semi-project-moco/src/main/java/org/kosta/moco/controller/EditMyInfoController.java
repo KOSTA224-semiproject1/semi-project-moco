@@ -18,7 +18,7 @@ public class EditMyInfoController implements Controller {
 			return "redirect:layout.jsp";
 		}
 		
-		request.setAttribute("url", "edit-memberinfo.jsp");
+		request.setAttribute("url", "test-edit-memberinfo.jsp");
 		return "layout.jsp";
 	}
 

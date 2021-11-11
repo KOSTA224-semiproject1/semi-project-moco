@@ -55,10 +55,10 @@ public class MyPageController implements Controller {
 		/* 페이징 외 */
 		RankVO rank = MemberDAO.getInstance().getMemberRank(mvo.getEmail());
 		session.setAttribute("rank", rank);// 민주 - 랭킹용
-		session.setAttribute("loginMemberVO", loginMemberVO);// 현재 로그인한 회원의 email, nickname, github 정보를 가져온다
+		session.setAttribute("mvo", loginMemberVO);// 현재 로그인한 회원의 email, nickname, github 정보를 가져온다
 		//session.setAttribute("list", list);// 현재 로그인한 회원의 post lists들을 불러온다
 		
-		request.setAttribute("url", "mypage.jsp");
+		request.setAttribute("url", "test-mypage.jsp");
 		return "layout.jsp";
 	}
 

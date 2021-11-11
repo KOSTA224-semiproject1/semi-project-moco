@@ -191,7 +191,30 @@ public class BoardDAO {
 
 		return list;
 	}
+	
+	public int getMyTotalPostCount(int languageCode) throws SQLException {
+		int totalPostCount = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
+		try {
+			con = dataSource.getConnection();
+			String sql = "select count(*) from moco_qna_board where language_code=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, languageCode);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				totalPostCount = rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+
+		return totalPostCount;
+	}
+	
 	public int getTotalPostCount(int languageCode) throws SQLException {
 		int totalPostCount = 0;
 		Connection con = null;
