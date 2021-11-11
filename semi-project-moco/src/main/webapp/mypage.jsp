@@ -1,18 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-
-.container {
-	color: #666666;
-	font-family: 'Nanum Gothic';
-	font-size: 20px;
-}
-</style>
 <div class="container">
-
-
 	<div class="user_nickname">
 		<div class="nickname">닉네임 :
 			${sessionScope.loginMemberVO.nickname}</div>
@@ -24,9 +13,7 @@
 	<div class="user_email">
 		<div class="email">이메일 : ${sessionScope.loginMemberVO.email}</div>
 	</div>
-
 	<div class="user_posts">
-
 		<table class="table table-hover table-bordered boardlist">
 			<thead>
 				<tr style="background-color: #d6f5d6">
@@ -55,8 +42,6 @@
 				</c:forEach>
 			</tbody>
 		</table>
-
-
 		<ul class="pagination justify-content-center" style="margin: 20px 0">
 			<c:if test="${pagingBean.previousPageGroup}">
 				<li class="page-item"><a class="page-link"
@@ -80,10 +65,7 @@
 					href="MyPageController.do?pageNo=${pagingBean.endPageOfPageGroup+1}">Next</a></li>
 			</c:if>
 		</ul>
-
 	</div>
-
-
 	<div class="user_rank">
 		<div class="grade">${sessionScope.rank.grade}</div>
 	</div>
@@ -106,8 +88,6 @@
 			</c:when>
 		</c:choose>
 	</div>
-
-
 	<div class="edit_profile">
 		<form action="EditMyInfoController.do">
 			<button type="submit" class="btn btn-primary btn-lg btn-block">회원정보수정</button>

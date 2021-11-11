@@ -160,41 +160,27 @@
    width: 75px;
 }
 .lang-img {
-   width: 150px;
-}
-.lang-img-box {
-   margin: 20px 0;
+   width: 120px;
+   opacity: 1;
 }
 /* 메인페이지 카테고리 */
-.card {
+.boxShadow {
    box-shadow: none;
    transform: scale(1);
    transition-duration: 0.3s;
 }
-.card:hover {
-   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+.boxShadow:hover {
+   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
    transform: scale(1.005);
    transition-duration: 0.3s;
+}
+.boardCard {
+	height: 250px;
+	border-radius: 20px;
 }
 /* 헤더 */
-.logo {
-   width: 75px;
-}
-.lang-img {
-   width: 150px;
-}
 .lang-img-box {
    margin: 20px 0;
-}
-.card {
-   box-shadow: none;
-   transform: scale(1);
-   transition-duration: 0.3s;
-}
-.card:hover {
-   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
-   transform: scale(1.005);
-   transition-duration: 0.3s;
 }
 .title {
    width: 50%;
@@ -206,7 +192,22 @@
    border: 1px solid var(- -color-border-default);
    border-radius: 6px;
 }
+.animated {
+	transition-property: margin-top, opacity;
+	transition-duration: 2s;
+}
+.navShadow {
+	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
+}
 </style>
+<script>
+	function startPage() {
+		let con = document.getElementById("con");
+		con.style.marginTop = "50px";
+		con.style.opacity = "1";
+	}
+	window.onload = startPage;
+</script>
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>
