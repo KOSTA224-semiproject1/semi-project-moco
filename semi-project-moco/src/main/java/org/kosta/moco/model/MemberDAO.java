@@ -103,7 +103,9 @@ public class MemberDAO {
 			pstmt.setString(2, password);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				memberVO = new MemberVO(email, password, rs.getString(1));
+				memberVO = new MemberVO();
+				memberVO.setEmail(email);
+				memberVO.setNickname(rs.getString(1));;
 			}
 		} finally {
 			closeAll(rs, pstmt, con);
