@@ -14,6 +14,7 @@ function checkRegForm() {
 	let nickname = document.getElementById("nickname");
 	let nicknameFlag = document.getElementById("nicknameFlag");
 	if(nickname.value != nicknameFlag.value) {
+		if(nickname.value == loginMemberVO.nickname) return;
 		alert("중복된 닉네임 입니다.\n사용 가능한 닉네임으로 변경해주세요");
 		return false;
 	}
