@@ -8,6 +8,10 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import org.kosta.moco.model.MemberVO;
+import org.kosta.moco.model.PagingBean;
+import org.kosta.moco.model.PostVO;
+
 public class BoardDAO {
 	private static BoardDAO instance = new BoardDAO();
 	private DataSource dataSource;
@@ -213,8 +217,7 @@ public class BoardDAO {
 		return pvo;
 	}
 	
-	
-	public  ArrayList<PostVO> getMemberPosts(String email) throws SQLException {
+	public ArrayList<PostVO> getMemberPosts(String email) throws SQLException {
 		ArrayList<PostVO> list=new ArrayList<PostVO>();
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -244,6 +247,58 @@ public class BoardDAO {
 				list.add(pvo);
 			}
 		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	
+	// 게시글 검색 메소드
+	public ArrayList<PostVO> getSearchPostList(String field, String query, PagingBean pagingBean, int languageCode) throws SQLException {
+		ArrayList<PostVO> list = new ArrayList<PostVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select v.rnum, v.post_no, v.post_title, to_char(v.post_regdate, 'yyyy-mm-dd') as post_regdate, m.nickname, v.hits, v.language_code, v.language ");
+			sql.append("from ( ");
+			sql.append("select row_number() over(order by b.post_regdate desc) as rnum, b.post_no, b.post_title, b.post_regdate, b.hits, b.email, b.language_code, l.language ");
+			sql.append("from moco_qna_board b, moco_service_language l ");
+			sql.append("where b.language_code = l.language_code and l.language_code = ? ");
+			sql.append(") v, moco_member m ");
+			sql.append("where v.email = m.email ");
+			sql.append("and REPLACE("+ field +", ' ', '') like ? "); // 띄어쓰기 상관없이 검색 가능
+			sql.append("and v.rnum between ? and ? ");
+			sql.append("order by v.post_regdate desc");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, languageCode);
+			pstmt.setString(2, "%" + query + "%");
+			pstmt.setInt(3, pagingBean.getStartRowNumber());
+			pstmt.setInt(4, pagingBean.getEndRowNumber());
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				PostVO pvo = new PostVO();
+				pvo.setPost_no(rs.getInt(2));
+				pvo.setPost_title(rs.getString(3));
+				pvo.setPost_regdate(rs.getString(4));
+				pvo.setHits(rs.getInt(6));
+				
+				MemberVO mvo = new MemberVO();
+				mvo.setNickname(rs.getString(5));
+				pvo.setMvo(mvo);
+				
+				LanguageVO lvo = new LanguageVO();
+				lvo.setLanguage_code(rs.getInt(7));
+				lvo.setLanguage(rs.getString(8));
+				pvo.setLvo(lvo);
+				
+				list.add(pvo);
+			}
+		} finally {
 			closeAll(rs, pstmt, con);
 		}
 		return list;
