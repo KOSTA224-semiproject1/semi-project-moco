@@ -78,50 +78,54 @@
 		}
 	}
 </script>
-<div class="container">
+<div class="container text-center">
 	<div class="row" style="margin-top: 50px;">
-		<div class="col-sm-4 offset-sm-4">
-			<form action="RegisterController.do" method="post" onsubmit="return checkRegForm()">
-				<div class="input-group mb-3">
-					<input type="email" class="form-control" name="email" id="email" required="required" placeholder="아이디(이메일)">
-					<input type="hidden" id="flag" value="">
-					<div class="input-group-append">
-						<button type="button" onclick="checkEmail()" class="btn btn-outline-primary">중복확인</button>
+		<div class="col-sm-6 offset-sm-3">
+			<div class="formBox" style="border: 1px solid rgba(0,0,0,0.2);">
+				<form action="RegisterController.do" method="post" onsubmit="return checkRegForm()" style="margin: 60px;">
+					<img class="mb-4" src="images/logo.png" style="width: 150px;">
+					<h1 class="h4 mb-3 font-weight-normal">회원가입</h1>
+					<div class="input-group mb-3">
+						<input type="email" class="form-control" name="email" id="email" required="required" placeholder="아이디(이메일)">
+						<input type="hidden" id="flag" value="">
+						<div class="input-group-append">
+							<button type="button" onclick="checkEmail()" class="btn btn-outline-primary">중복확인</button>
+						</div>
+						<%-- input -group-append --%>
 					</div>
-					<%-- input -group-append --%>
-				</div>
-				<%-- input group mb-3 --%>
-				<div class="input-group mb-3">
-					<input type="password" class="form-control" name="password" id="pass" required="required" placeholder="비밀번호" maxlength="100" onkeyup="return passwordChanged();">
-					<div class="input-group-append">
-						<span id="strength" class="input-group-text">보안</span>
+					<%-- input group mb-3 --%>
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" name="password" id="pass" required="required" placeholder="비밀번호" maxlength="100" onkeyup="return passwordChanged();">
+						<div class="input-group-append">
+							<span id="strength" class="input-group-text">보안</span>
+						</div>
 					</div>
-				</div>
-				<div>
-					<p id="passwordLength" style="font-size: 13px"><p>
-				</div>
-				<%-- input group mb-3 --%>
-				<div class="input-group mb-3">
-					<input type="password" class="form-control" name="confirmPassword" id="confirmPass" required="required" placeholder="비밀번호 확인" onkeyup="checkPassword()">
-				</div>
-				<div>
-					<p id="confirmResult" style="font-size: 13px"><p>
-				</div>
-				<div class="input-group mb-3">
-					<input id="nickname" type="text" class="form-control" name="nickname" required="required" placeholder="닉네임" onkeyup="checkNickname()">
-					<input id="nicknameFlag" type="hidden" value="">
-				</div>
-				<div>
-					<p id="duplicateResult" style="font-size: 13px"><p>
-				</div>
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon3">www.github.com/</span>
+					<div>
+						<p id="passwordLength" style="font-size: 13px"><p>
 					</div>
-					<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="github" required="required" placeholder="username">
-				</div>
-				<button type="submit" class="btn btn-primary btn-block">회원가입</button>
-			</form>
+					<%-- input group mb-3 --%>
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" name="confirmPassword" id="confirmPass" required="required" placeholder="비밀번호 확인" onkeyup="checkPassword()">
+					</div>
+					<div>
+						<p id="confirmResult" style="font-size: 13px"><p>
+					</div>
+					<div class="input-group mb-3">
+						<input id="nickname" type="text" class="form-control" name="nickname" required="required" placeholder="닉네임" onkeyup="checkNickname()">
+						<input id="nicknameFlag" type="hidden" value="">
+					</div>
+					<div>
+						<p id="duplicateResult" style="font-size: 13px"><p>
+					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon3">www.github.com/</span>
+						</div>
+						<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="github" required="required" placeholder="username">
+					</div>
+					<button type="submit" class="btn btn-primary btn-block">회원가입</button>
+				</form>
+			</div>
 		</div>
 		<%--col-sm-4 offset-sm-4 div --%>
 	</div>

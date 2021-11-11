@@ -2,26 +2,30 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 게시물 검색폼 --%>
-<div class="container center-block pt-5 mt-3" style='width: 650px;'>
-	<form action="SearchPostListPageController.do" onkeydown="onEnter()">
-		<input type="hidden" name="languageCode"
-			value="${requestScope.languageCode }">
-		<div class="input-group mt-3 mb-3">
-			<div class="input-group-prepend">
-				<select class="form-control" name="f">
-					<option class="dropdown-item"
-						${(param.f == "post_title")? "selected" : ""} value="post_title">제목</option>
-					<option class="dropdown-item"
-						${(param.f == "nickname")? "selected" : ""} value="nickname">작성자</option>
-				</select>
-			</div>
-			<input type="text" class="form-control" name="q" value="${param.q}"
-				placeholder="검색어를 입력하세요" required="required">
-			<div class="input-group-append">
-				<button class="btn btn-primary" type="submit">검색</button>
-			</div>
+<div class="container center-block pt-5 mt-3">
+	<div class="row">
+		<div class="col-sm-6 offset-sm-3">
+			<form action="SearchPostListPageController.do" onkeydown="onEnter()">
+				<input type="hidden" name="languageCode"
+					value="${requestScope.languageCode }">
+				<div class="input-group mt-3 mb-3">
+					<div class="input-group-prepend">
+						<select class="form-control" name="f">
+							<option class="dropdown-item"
+								${(param.f == "post_title")? "selected" : ""} value="post_title">제목</option>
+							<option class="dropdown-item"
+								${(param.f == "nickname")? "selected" : ""} value="nickname">작성자</option>
+						</select>
+					</div>
+					<input type="text" class="form-control" name="q" value="${param.q}"
+						placeholder="검색어를 입력하세요" required="required">
+					<div class="input-group-append">
+						<button class="btn btn-primary" type="submit">검색</button>
+					</div>
+				</div>
+			</form>
 		</div>
-	</form>
+	</div>
 </div>
 <%-- 게시물 검색폼 --%>
 <div class="container" style="margin-top: 50px; padding: 0px 100px;">
@@ -49,7 +53,7 @@
 				<th class="title">제목</th>
 				<th>작성자</th>
 				<th>작성일</th>
-				<th>조회</th>
+				<th>조회수</th>
 			</tr>
 		</thead>
 		<tbody>

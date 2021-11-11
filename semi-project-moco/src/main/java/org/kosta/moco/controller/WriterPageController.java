@@ -55,7 +55,7 @@ public class WriterPageController implements Controller {
 		RankVO rank = MemberDAO.getInstance().getMemberRank(email);
 		request.setAttribute("rank", rank);// 민주 - 랭킹용
 		request.setAttribute("memberVO", memberVO);
-		request.setAttribute("url", "writerpage.jsp");
+		request.setAttribute("url", "test-writerpage.jsp");
 		return "layout.jsp";
 	}
 
