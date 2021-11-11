@@ -39,6 +39,9 @@ public class SearchPostListPageController implements Controller {
 		
 		System.out.println("field : " + field);
 		System.out.println("query : " + query);
+		if(query == "") {
+			return "ListPageController.do?languageCode=" + languageCode;
+		}
 
 		ArrayList<PostVO> searchPostList = BoardDAO.getInstance().getSearchPostList(field, query, pagingBean, languageCode);
 		
