@@ -10,8 +10,9 @@
 	font-size: 20px;
 }
 </style>
-<div class="container">
 
+<div class="container">
+<a href="ScrapListPageController.do">스크랩리스트</a>
 
 	<div class="user_nickname">
 		<div class="nickname">닉네임 :
