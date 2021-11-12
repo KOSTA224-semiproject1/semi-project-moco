@@ -389,6 +389,7 @@ public class BoardDAO {
 
 				list.add(pvo);
 			}
+			System.out.println("list : " + list); // test
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
@@ -497,6 +498,37 @@ public class BoardDAO {
 		}
 
 		return totalScrapPostCount;
+	}
+	
+	public int getTotalSearchPostCount(String field, String query, int languageCode) throws SQLException {
+		int totalSearchPostCount = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select count(*) ");
+			sql.append("from ( ");
+			sql.append("select * ");
+			sql.append("from moco_qna_board b, moco_service_language l ");
+			sql.append("where b.language_code = l.language_code and l.language_code = ? ");
+			sql.append(") v, moco_member m ");
+			sql.append("where v.email = m.email ");
+			sql.append("and REPLACE(" + field + ", ' ', '') like ? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, languageCode);
+			pstmt.setString(2, "%" + query + "%");
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				totalSearchPostCount = rs.getInt(1);
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return totalSearchPostCount;
 	}
 
 }
