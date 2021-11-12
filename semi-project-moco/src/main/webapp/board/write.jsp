@@ -14,7 +14,7 @@
 				<td>
 					<p class="font-weight-bold" style="font-size: 1.5rem">소스코드</p>
 					<pre>
-						<textarea id="editor" name="codeContent" rows="10"></textarea>
+						<textarea id="editor" name="codeContent" rows="10"> </textarea>
 					</pre>
 					<script>
 						var editor = CodeMirror.fromTextArea(document
@@ -29,7 +29,7 @@
 			<tr>
 				<td>
 					<p class="font-weight-bold" style="font-size: 1.5rem">본문</p>
-					<textarea rows="10" class="form-control" name="content" placeholder="내용을 입력하세요."></textarea>
+					<textarea rows="10" class="form-control" name="content" placeholder="내용을 입력하세요." required="required"></textarea>
 				</td>
 			</tr>
 		</table>
