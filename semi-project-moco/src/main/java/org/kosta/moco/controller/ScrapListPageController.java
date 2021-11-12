@@ -44,11 +44,11 @@ public class ScrapListPageController implements Controller {
 		ArrayList<PostVO> scrapList = BoardDAO.getInstance().getScrapPostList(mvo.getEmail(), pagingBean);
 
 		// 게시물 리스트 정보
-		request.setAttribute("scrapList", scrapList);
-
+		session.setAttribute("scrapList", scrapList);
+		System.out.println(scrapList);
 		// 페이징 정보
 		session.setAttribute("pagingBean", pagingBean);
-
+		session.setAttribute("number", totalPostScrapCount);
 		request.setAttribute("url", "scrap-list.jsp");
 		return "layout.jsp";
 	}

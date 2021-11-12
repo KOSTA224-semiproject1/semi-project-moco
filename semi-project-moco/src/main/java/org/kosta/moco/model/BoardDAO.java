@@ -8,10 +8,6 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-import org.kosta.moco.model.MemberVO;
-import org.kosta.moco.model.PagingBean;
-import org.kosta.moco.model.PostVO;
-
 public class BoardDAO {
 	private static BoardDAO instance = new BoardDAO();
 	private DataSource dataSource;
@@ -44,7 +40,8 @@ public class BoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("insert into moco_qna_board(post_no, post_title, post_content, post_code, post_regdate, email, language_code) ");
+			sql.append(
+					"insert into moco_qna_board(post_no, post_title, post_content, post_code, post_regdate, email, language_code) ");
 			sql.append("values(moco_qna_board_seq.nextval, ?, ?, ?, sysdate, ?, ?)");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, postVO.getPost_title());
@@ -100,9 +97,11 @@ public class BoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select v.rnum, v.post_no, v.post_title, to_char(v.post_regdate, 'yyyy-mm-dd') as post_regdate, m.nickname, v.hits, v.language_code, v.language, v.can_select ");
+			sql.append(
+					"select v.rnum, v.post_no, v.post_title, to_char(v.post_regdate, 'yyyy-mm-dd') as post_regdate, m.nickname, v.hits, v.language_code, v.language, v.can_select ");
 			sql.append("from ( ");
-			sql.append("select row_number() over(order by b.post_regdate desc) as rnum, b.post_no, b.post_title, b.post_regdate, b.hits, b.email, b.language_code, l.language, b.can_select ");
+			sql.append(
+					"select row_number() over(order by b.post_regdate desc) as rnum, b.post_no, b.post_title, b.post_regdate, b.hits, b.email, b.language_code, l.language, b.can_select ");
 			sql.append("from moco_qna_board b, moco_service_language l ");
 			sql.append("where b.language_code = l.language_code and l.language_code = ? ");
 			sql.append(") v, moco_member m ");
@@ -191,7 +190,7 @@ public class BoardDAO {
 
 		return list;
 	}
-	
+
 	public int getMyTotalPostCount(int languageCode) throws SQLException {
 		int totalPostCount = 0;
 		Connection con = null;
@@ -214,7 +213,7 @@ public class BoardDAO {
 
 		return totalPostCount;
 	}
-	
+
 	public int getTotalPostCount(int languageCode) throws SQLException {
 		int totalPostCount = 0;
 		Connection con = null;
@@ -288,7 +287,8 @@ public class BoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select b.post_no, b.post_title, b.post_content, b.post_code, to_char(b.post_regdate, 'yyyy-mm-dd') as post_regdate, b.hits, m.nickname, m.email, b.language_code, b.can_select ");
+			sql.append(
+					"select b.post_no, b.post_title, b.post_content, b.post_code, to_char(b.post_regdate, 'yyyy-mm-dd') as post_regdate, b.hits, m.nickname, m.email, b.language_code, b.can_select ");
 			sql.append("from moco_qna_board b, moco_member m ");
 			sql.append("where b.email = m.email and b.post_no = ?");
 			pstmt = con.prepareStatement(sql.toString());
@@ -353,9 +353,11 @@ public class BoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select v.rnum, v.post_no, v.post_title, to_char(v.post_regdate, 'yyyy-mm-dd') as post_regdate, m.nickname, v.hits, v.language_code, v.language ");
+			sql.append(
+					"select v.rnum, v.post_no, v.post_title, to_char(v.post_regdate, 'yyyy-mm-dd') as post_regdate, m.nickname, v.hits, v.language_code, v.language ");
 			sql.append("from ( ");
-			sql.append("select row_number() over(order by b.post_regdate desc) as rnum, b.post_no, b.post_title, b.post_regdate, b.hits, b.email, b.language_code, l.language ");
+			sql.append(
+					"select row_number() over(order by b.post_regdate desc) as rnum, b.post_no, b.post_title, b.post_regdate, b.hits, b.email, b.language_code, l.language ");
 			sql.append("from moco_qna_board b, moco_service_language l ");
 			sql.append("where b.language_code = l.language_code and l.language_code = ? ");
 			sql.append(") v, moco_member m ");
@@ -385,7 +387,7 @@ public class BoardDAO {
 				LanguageVO lvo = new LanguageVO();
 				lvo.setLanguage_code(rs.getInt(7));
 				lvo.setLanguage(rs.getString(8));
-				pvo.setLvo(lvo); 	
+				pvo.setLvo(lvo);
 
 				list.add(pvo);
 			}
@@ -401,7 +403,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "insert into moco_scrap values(?, ?, sysdate)";
+			String sql = "insert into moco_scrap values(moco_scrap_seq.nextval,?, ?, sysdate)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, email);
 			pstmt.setInt(2, postNo);
@@ -421,14 +423,31 @@ public class BoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder("");
-			sql.append("select v.rnum, v.post_no, b.post_title, to_char(b.post_regdate, 'yyyy-mm-dd') as post_regdate, v.nickname, b.hits ");
+			
+			sql.append("select v.rnum,v.scrap_no, v.post_no, b.post_title, ");
+			sql.append("to_char(b.post_regdate, 'yyyy-mm-dd') as post_regdate, v.nickname, b.hits ");
 			sql.append("from ( ");
-			sql.append("select row_number() over(order by s.scrap_date desc) as rnum, m.email, m.nickname, s.post_no, s.scrap_date ");
+			sql.append("select row_number() over(order by s.scrap_date desc) as rnum, ");
+			sql.append("s.scrap_no, m.email, m.nickname, s.post_no, s.scrap_date ");
 			sql.append("from moco_member m, moco_scrap s ");
 			sql.append("where m.email=s.email and m.email=? ");
 			sql.append(") v, moco_qna_board b ");
 			sql.append("where v.post_no=b.post_no ");
-			sql.append("and v.rnum between ? and ?");
+			sql.append("and v.rnum between ? and ? ");
+			sql.append("order by v.scrap_no desc ");
+			
+//			
+//			sql.append(
+//					"select v.rnum,v.scrap_no, v.post_no, b.post_title, to_char(b.post_regdate, 'yyyy-mm-dd') as post_regdate, v.nickname, b.hits ");
+//			sql.append("from ( ");
+//			sql.append(
+//					"select row_number() over(order by s.scrap_date desc) as rnum, s.scrap_no, m.email, m.nickname, s.post_no, s.scrap_date ");
+//			sql.append("from moco_member m, moco_scrap s ");
+//			sql.append("where m.email=s.email and m.email=? ");
+//			sql.append(") v, moco_qna_board b ");
+//			sql.append("where v.post_no=b.post_no ");
+//			sql.append("and v.rnum between ? and ? ");
+//			sql.append("order by v.scrap_no desc");
 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, email);
@@ -438,13 +457,18 @@ public class BoardDAO {
 
 			while (rs.next()) {
 				PostVO pvo = new PostVO();
-				pvo.setPost_no(rs.getInt(2));
-				pvo.setPost_title(rs.getString(3));
-				pvo.setPost_regdate(rs.getString(4));
-				pvo.setHits(rs.getInt(6));
+				ScrapVO svo = new ScrapVO();
+				svo.setScrap_no(rs.getInt(2));
+				pvo.setPost_no(rs.getInt(3));
+				pvo.setPost_title(rs.getString(4));
+				pvo.setPost_regdate(rs.getString(5));
+				pvo.setHits(rs.getInt(7));
+				
 				MemberVO mvo = new MemberVO();
-				mvo.setNickname(rs.getString(5));
+				mvo.setNickname(rs.getString(6));
+				pvo.setSvo(svo);
 				pvo.setMvo(mvo);
+
 				list.add(pvo);
 			}
 		} finally {
@@ -475,7 +499,7 @@ public class BoardDAO {
 		}
 		return result;
 	}
-	
+
 	public int getTotalScrapPostCount(String email) throws SQLException {
 		int totalScrapPostCount = 0;
 		Connection con = null;
@@ -497,6 +521,20 @@ public class BoardDAO {
 		}
 
 		return totalScrapPostCount;
+	}
+
+	public void deleteScrap(String scrapNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "delete from moco_scrap where scrap_no = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,(Integer.parseInt(scrapNo)));
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
 	}
 
 }
