@@ -29,7 +29,7 @@
 	</div>
 
 	<div style="margin-bottom: 10px; display: flex;">
-		<p style="text-align: center;">"${param.q}" 검색결과 [${fn:length(searchPostList)}건]</p>
+		<p style="text-align: center;"><span style="color: #0000CD;"><b>"${param.q}"</b></span> 검색결과 [${requestScope.totalSearchPostCount}건]</p> <%-- 추가 --%>
 		<div style="margin-left: auto;">
 			<button type="button" class="btn btn-primary" onclick="moveToMainPage()">카테고리</button>
 			<button type="button" class="btn btn-primary" onclick="moveToWritePage('${requestScope.languageCode}')">글쓰기</button>
@@ -80,7 +80,7 @@
 					<li class="page-item active"><a class="page-link" href="SearchPostListPageController.do?pageNo=${page}&languageCode=${requestScope.languageCode}">${page}</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="SearchPostListPageController.do?pageNo=${page}&languageCode=${requestScope.languageCode}">${page}</a></li>
+					<li class="page-item"><a class="page-link" href="SearchPostListPageController.do?pageNo=${page}&languageCode=${requestScope.languageCode}&f=${param.f}&q=${param.q}">${page}</a></li> <%-- 추가 --%>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
