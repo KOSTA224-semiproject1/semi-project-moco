@@ -353,16 +353,16 @@ public class BoardDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select v.rnum, v.post_no, v.post_title, to_char(v.post_regdate, 'yyyy-mm-dd') as post_regdate, m.nickname, v.hits, v.language_code, v.language ");
+			sql.append("select rnum, post_no, post_title, post_regdate, nickname, hits, language_code, language ");
 			sql.append("from ( ");
-			sql.append("select row_number() over(order by b.post_regdate desc) as rnum, b.post_no, b.post_title, b.post_regdate, b.hits, b.email, b.language_code, l.language ");
+			sql.append("select row_number() over(order by v.post_regdate desc) as rnum, v.post_no, v.post_title, to_char(v.post_regdate, 'yyyy-mm-dd') as post_regdate, m.nickname, v.hits, v.language_code, v.language ");
+			sql.append("from ( ");
+			sql.append("select b.post_no, b.post_title, b.post_regdate, b.hits, b.email, b.language_code, l.language ");
 			sql.append("from moco_qna_board b, moco_service_language l ");
-			sql.append("where b.language_code = l.language_code and l.language_code = ? ");
-			sql.append(") v, moco_member m ");
-			sql.append("where v.email = m.email ");
-			sql.append("and REPLACE(" + field + ", ' ', '') like ? "); // 띄어쓰기 상관없이 검색 가능
-			sql.append("and v.rnum between ? and ? ");
-			sql.append("order by v.post_regdate desc");
+			sql.append("where b.language_code = l.language_code and l.language_code = ? order by post_regdate desc ");
+			sql.append(") v, moco_member m where v.email = m.email and REPLACE(" + field + ", ' ', '') like ?  ");
+			sql.append(") ");
+			sql.append("where rnum between ? and ? ");
 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, languageCode);
