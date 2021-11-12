@@ -18,19 +18,6 @@ public class SearchPostListPageController implements Controller {
 		request.setAttribute("language", LanguageDAO.getInstance().getLanguageName(languageCode));
 		request.setAttribute("languageCode", languageCode);
 		
-		int totalPostCount = BoardDAO.getInstance().getTotalPostCount(languageCode);
-		String pageNo = request.getParameter("pageNo");
-		PagingBean pagingBean = null;
-	
-		if(pageNo == null) {
-			// 현재 페이지가 1page로 할당되어 있음
-			pagingBean = new PagingBean(totalPostCount);
-		}
-		else {
-			// client에서 보낸 page번호로 할당한다
-			pagingBean = new PagingBean(totalPostCount, Integer.parseInt(pageNo));
-		}
-		
 		/**
 		 * 게시글 검색을 위한 코드
 		 */
@@ -42,14 +29,29 @@ public class SearchPostListPageController implements Controller {
 		if(query == "") {
 			return "ListPageController.do?languageCode=" + languageCode;
 		}
+		
+		/**
+		 * 페이징 처리를 위한 코드
+		 */
+		int totalSearchPostCount = BoardDAO.getInstance().getTotalSearchPostCount(field, query, languageCode);
+		String pageNo = request.getParameter("pageNo");
+		PagingBean pagingBean = null;
+	
+		if(pageNo == null) {
+			// 현재 페이지가 1page로 할당되어 있음
+			pagingBean = new PagingBean(totalSearchPostCount);
+		}
+		else {
+			// client에서 보낸 page번호로 할당한다
+			pagingBean = new PagingBean(totalSearchPostCount, Integer.parseInt(pageNo));
+		}	
 
-		ArrayList<PostVO> searchPostList = BoardDAO.getInstance().getSearchPostList(field, query, pagingBean, languageCode);
-		
-		System.out.println("searchPostList : " + searchPostList);
-		
+		ArrayList<PostVO> searchPostList = BoardDAO.getInstance().getSearchPostList(field, query, pagingBean, languageCode); // 검색
+
 		request.setAttribute("searchPostList", searchPostList);
 		
 		request.setAttribute("pagingBean", pagingBean);
+		request.setAttribute("totalSearchPostCount", totalSearchPostCount);
 		
 		request.setAttribute("url", "board/search.jsp");
 		
