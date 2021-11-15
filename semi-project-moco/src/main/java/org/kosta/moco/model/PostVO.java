@@ -10,7 +10,18 @@ public class PostVO {
 	private String can_select;
 	private MemberVO mvo;
 	private LanguageVO lvo;
+	private ScrapVO svo;
 	
+
+	public PostVO(int post_no, String post_title, String post_regdate, int hits, MemberVO mvo, ScrapVO svo) {
+		super();
+		this.post_no = post_no;
+		this.post_title = post_title;
+		this.post_regdate = post_regdate;
+		this.hits = hits;
+		this.mvo = mvo;
+		this.svo = svo;
+	}
 	public PostVO() {
 		super();
 	}
@@ -34,6 +45,12 @@ public class PostVO {
 		this.hits = hits;
 		this.mvo = mvo;
 		this.lvo = lvo;
+	}
+	public ScrapVO getSvo() {
+		return svo;
+	}
+	public void setSvo(ScrapVO svo) {
+		this.svo = svo;
 	}
 	public int getPost_no() {
 		return post_no;
@@ -92,7 +109,8 @@ public class PostVO {
 	@Override
 	public String toString() {
 		return "PostVO [post_no=" + post_no + ", post_title=" + post_title + ", post_content=" + post_content
-				+ ", post_code=" + post_code + ", post_regdate=" + post_regdate + ", hits=" + hits + ", mvo=" + mvo
-				+ ", lvo=" + lvo + "]";
+				+ ", post_code=" + post_code + ", post_regdate=" + post_regdate + ", hits=" + hits + ", can_select="
+				+ can_select + ", mvo=" + mvo + ", lvo=" + lvo + ", svo=" + svo + "]";
 	}
+
 }
