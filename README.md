@@ -15,18 +15,18 @@
 
 ## 🚀 프로젝트 개요
 ### MOCO(모두의 코딩) 란 ❓
-- 
-- 
-- 
+- 코딩하는 모든 이들을 위한 코딩 커뮤니티, 모두의코딩!
+- 자신의 코드에 대한 질문이 있는 사용자는 누구든지 질문할 수 있도록 접근성이 높은 커뮤니티를 만드는것이 목표입니다.
+- 그 동안 KOSTA 교육을 통해 배웠던 내용을 복습하고 활용해 기획부터 설계까지 경험해보는 프로젝트입니다.
 
 <br>
 
 ## :busts_in_silhouette: 팀원
--   [Cheoljin Kim](https://github.com/cheoljin408) : 메인개발자 및 팀장<br>
--   [sehee](https://github.com/Liiims) : 메인개발자
--   [nogy21](https://github.com/nogy21) : 메인개발자
--   [JinA](https://github.com/JinA-Kim-hub) : 메인개발자
--   [joonkb](https://github.com/Joonkb) : 메인개발자
+-   `김철진` : [Cheoljin Kim](https://github.com/cheoljin408) : 메인개발자 및 팀장<br>
+-   `임세희` : [Sehee](https://github.com/Liiims) : 메인개발자
+-   `김민주` : [Bittah Swami](https://github.com/6democratickim9) : 메인개발자
+-   `김진아` : [JinA](https://github.com/JinA-Kim-hub) : 메인개발자
+-   `김병준` : [joonkb](https://github.com/Joonkb) : 메인개발자
 
 
 <br>
@@ -60,7 +60,7 @@
 
 <br>
 
-### 📐개발 프로세스 및 설계
+### 📐개발 프로세스 및 설계 - UseCase Diagram
 ---
 <details>
 <summary>💶Usecase Diagram</summary>
@@ -75,6 +75,27 @@
  ## 2차 개발 (UseCase Diagram)
  
  ![UseCaseDiagram2](https://user-images.githubusercontent.com/57327375/141688003-613f820b-979d-4dc2-961a-a34ae99f86da.png)
+
+</div>
+</details>
+
+<br>
+
+### 📐개발 프로세스 및 설계 - E-R Diagram
+---
+<details>
+<summary>💶E-R Diagram</summary>
+<div markdown="1">
+
+ ## 초기 계획 (E-R Diagram)
+ 
+!![image](https://user-images.githubusercontent.com/57327375/142150990-2b1034a9-7770-43d5-b9ea-ce071d4bfba1.png)
+ 
+ <br>
+ 
+ ## 2차 개발 (E-R Diagram)
+ 
+ !![image](https://user-images.githubusercontent.com/57327375/142151044-c4a4d081-415b-4805-bc42-94ce36e6270a.png)
 
 </div>
 </details>
@@ -168,7 +189,6 @@
 | 이슈 내용                                                    | 해결 방안                                                    |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | 게시물 조회를 위한 BoardDAO 메소드 `getSearchPostList()`에서 sql 문장에 포함된(?) 에 field가 set이 안되어 `NullPointerException` 발생 | pstmt.setString(2, field) 로 set 해주지 않고 sql 문장에 field를 직접 넣어줌. 이유는 아직 알 수 없음 | 
-|`게시물 조회` 시 검색 건수에는 문제가 없지만 검색 결과 일부가 보이지 않는 현상 발생| 게시물 조회를 위한 sql문장 중 rnum 이 순서대로 적용되어 있지 않아 페이징 처리가 안된 문제였음. 필요한 where 조건들을 `row_number() over(order by v.post_regdate desc) as rnum` 이 실행되기 전에 넣어줘야 rnum 이 잘  적용되어 나옴!!! |
  |`게시물 조회` 시 검색 건수에는 문제가 없지만 검색 결과 일부가 보이지 않는 현상 발생| 게시물 조회를 위한 sql문장 중 rnum 이 순서대로 적용되어 있지 않아 페이징 처리가 안된 문제였음. 필요한 where 조건들을 `row_number() over(order by v.post_regdate desc) as rnum` 이 실행되기 전에 넣어줘야 rnum 이 잘  적용되어 나옴!!! |
 |댓글의 내용을 수정 할 경우 가장 상위에 있는 댓글의 입력폼이 변하여 해당 댓글을 수정 할 수 없는 문제가 발생하게됨, 다시 말하면 여러개의 댓글 중 수정하기 버튼을 누를경우 가장 상위에 있는 버튼의 입력폼이 수정할 수 있도록 변하게됨|<c:forEachitems="${requestScope.commentList}" var="comment"> JSTL 반목문을 수행하고 그 사이에서 태그들이 형성이 되기 때문이다. 따라서 그 사이의 태그들의 `id값`이 반복문을 돌더라고 하나의 값인 경우 맨 위에 있는 id 값만을 인식하지 못하는것이다. 따라서 댓글의 넘버를 통해서 id값을 분류하였고 이를 잘 활용함|
  |자기가 쓴 게시물에서 댓글을 달고 해당 댓글을 삭제하는 경우 해당 게시글이 삭제되는 경우가 발생됨 다른 게시물에서는 이런상황이 발생하지 않음 |  해당 이슈는 id 값이 중복되어 정의 되어있었음 (board/post-detail.jsp, comment.list.jsp)   → 비교적 구조가 간단한 board/post-detail.jsp 파일에서 id="deleteForm" → deletePostForm 으로 id 값을 변경해주었고 결과적으로 정상적으로 잘 동작함|
