@@ -7,6 +7,12 @@ public class LanguageVO {
 	public LanguageVO() {
 		super();
 	}
+	
+	public LanguageVO(String language) {
+		super();
+		this.language = language;
+	}
+
 	public LanguageVO(int language_code, String language) {
 		super();
 		this.language_code = language_code;

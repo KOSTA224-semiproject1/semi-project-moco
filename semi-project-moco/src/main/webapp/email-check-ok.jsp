@@ -8,6 +8,13 @@
 <title>email-ok</title>
 </head>
 <body>
-사용 가능
+	사용 가능
+	<script type="text/javascript">
+		opener.document.getElementById("flag").value="${param.email}";
+		function closePopup() {
+			opener.document.getElementById("pass").focus();
+			self.close();
+		}
+	</script>
 </body>
 </html>

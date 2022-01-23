@@ -9,11 +9,21 @@ public class MemberVO implements Serializable {
 	private String nickname;
 	private int thumbs;
 	private String github;
-
+	private String thema;
 	public MemberVO() {
 		super();
 	}
-
+	public MemberVO(String email) {
+		super();
+		this.email = email;
+	}
+	public MemberVO(String email, String nickname, String github) {
+		super();
+		this.email = email;
+		this.nickname = nickname;
+		this.github = github;
+	}
+	
 	public MemberVO(String email, String password, String nickname, String github) {
 		super();
 		this.email = email;
@@ -21,7 +31,6 @@ public class MemberVO implements Serializable {
 		this.nickname = nickname;
 		this.github = github;
 	}
-
 	public MemberVO(String email, String password, String nickname, int thumbs, String github) {
 		super();
 		this.email = email;
@@ -30,13 +39,6 @@ public class MemberVO implements Serializable {
 		this.thumbs = thumbs;
 		this.github = github;
 	}
-	public MemberVO(String id, String password, String name) {
-		super();
-		this.email = id;
-		this.password = password;
-		this.nickname = name;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -76,7 +78,12 @@ public class MemberVO implements Serializable {
 	public void setGithub(String github) {
 		this.github = github;
 	}
-
+	public String getThema() {
+		return thema;
+	}
+	public void setThema(String thema) {
+		this.thema = thema;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [email=" + email + ", password=" + password + ", nickname=" + nickname + ", thumbs=" + thumbs

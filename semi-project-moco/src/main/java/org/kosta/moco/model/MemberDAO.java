@@ -51,7 +51,7 @@ public class MemberDAO {
 		}
 	}
 
-	public boolean emailCheck(String email) throws SQLException { 
+	public boolean emailCheck(String email) throws SQLException {
 		boolean result = false;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -88,25 +88,167 @@ public class MemberDAO {
 		}
 		return result;
 	}
-	
-	public MemberVO login(String email,String password) throws SQLException {
-		MemberVO memberVO=null;
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+
+	public MemberVO login(String email, String password) throws SQLException {
+		MemberVO memberVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
-			con=dataSource.getConnection();
-			String sql="select nickname from moco_member where email=? and password=?";
-			pstmt=con.prepareStatement(sql);
+			con = dataSource.getConnection();
+			String sql = "select nickname, thema from moco_member where email=? and password=?";
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, email);
 			pstmt.setString(2, password);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				memberVO=new MemberVO(email,password,rs.getString(1));
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				memberVO = new MemberVO();
+				memberVO.setEmail(email);
+				memberVO.setNickname(rs.getString(1));
+				memberVO.setThema(rs.getString(2));
 			}
-		}finally {
+		} finally {
 			closeAll(rs, pstmt, con);
 		}
 		return memberVO;
+	}
+
+	public RankVO getMemberRank(String email) throws SQLException {
+		RankVO rankVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select r.grade ");
+			sql.append("from moco_member m, moco_rank r ");
+			sql.append("where m.thumbs>=r.min_thumbs and m.thumbs<=r.max_thumbs ");
+			sql.append("and m.email=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				rankVO = new RankVO(rs.getString(1));
+			}
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return rankVO;
+	}
+
+	// 마이페이지 회원정보 조회 - 작성자 : 김진아 2021-11-09
+	public MemberVO memberInfo(String email) throws SQLException {
+
+		MemberVO memberVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = dataSource.getConnection();
+			String sql = "select email, password, nickname, github from MOCO_MEMBER where email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				memberVO = new MemberVO();
+				memberVO.setEmail(rs.getString(1));
+				memberVO.setPassword(rs.getString(2));
+				memberVO.setNickname(rs.getString(3));
+				memberVO.setGithub(rs.getString(4));
+			}
+
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+
+		return memberVO;
+	}
+
+	public String getMemberEmail(String nickname) throws SQLException {
+		String email=null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = dataSource.getConnection();
+			String sql = "select email from MOCO_MEMBER where nickname=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, nickname);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				email=(rs.getString(1));
+			}
+
+		} finally {
+			closeAll(rs, pstmt, con);
+		}
+		return email;
+		
+		
+	}
+
+	// 회원정보수정 - 작성자 : 김진아 2021-11-09
+	public void updateMember(MemberVO vo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "update MOCO_MEMBER set nickname=?, github=? where email=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getNickname());
+			pstmt.setString(2, vo.getGithub());
+			pstmt.setString(3, vo.getEmail());
+			pstmt.executeUpdate();
+
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
+
+	/**
+	 * 
+	 * 게시글에서 작성자가 채택하기 버튼을 누르면 해당 댓글 작성자의 채택수를 1 증가 시키는 메서드 이때 작성자의 email을 통해서 해당
+	 * 멤버를 찾고 thumbs = thumbs + 1을 한다.
+	 * 
+	 * @param email : 댓글 작성자의 이메일
+	 * @throws SQLException
+	 */
+	public void selectComment(String email) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "update moco_member set thumbs = thumbs + 1 where email = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}
+	/**
+	 * 해당 테마로 DB내의 테마 정보를 수정 
+	 * 
+	 * @param thema : 변경할 테마
+	 * @param email : 변경을 당할 회원의 이메일
+	 * @throws SQLException
+	 */
+	public void changeThema(String thema, String email) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "update moco_member set thema = ? where email = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, thema);
+			pstmt.setString(2, email);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
 	}
 }

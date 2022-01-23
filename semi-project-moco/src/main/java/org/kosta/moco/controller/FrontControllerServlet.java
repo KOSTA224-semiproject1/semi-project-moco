@@ -25,13 +25,16 @@ public class FrontControllerServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		this.permitAllList = new ArrayList<String>();
-		permitAllList.add("ListController");
+		permitAllList.add("ListPageController");
 		permitAllList.add("MainPageController");
 		permitAllList.add("LoginController");
 		permitAllList.add("LoginFormSubmitController");
 		permitAllList.add("RegisterController");
 		permitAllList.add("EmailCheckController");
 		permitAllList.add("RegisterPageController");
+		permitAllList.add("SendEmailController");
+		permitAllList.add("SearchPostListPageController");
+		permitAllList.add("WriterPageController");
 	}
 	
 	/**

@@ -14,11 +14,14 @@ public class RegisterController implements Controller {
 		String password = request.getParameter("password");
 		String nickname = request.getParameter("nickname");
 		String github = request.getParameter("github");
+		github = "www.github.com/" + github;
 		
 		MemberVO mvo = new MemberVO(email, password, nickname, github);
 		MemberDAO.getInstance().registerMember(mvo);
 		
-		return "redirect:MainPageController.do";
+		request.setAttribute("userEmail", email);
+		
+		return "SendEmailController.do";
 	}
 
 }
